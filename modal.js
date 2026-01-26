@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add click handlers to product cards
   const productCards = document.querySelectorAll('.product-card');
   
-  productCards.forEach((card, index) => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
       const title = card.querySelector('h3').textContent;
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
-  });
 });
 
 function showProductModal(product) {
