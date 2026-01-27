@@ -1,3 +1,4 @@
+// Modal functionality - Updated
 // Product details data
 const productDetails = {
   'CLASSIC SMASHED': {
