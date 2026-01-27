@@ -502,7 +502,8 @@
       productCards.forEach((card, index) => {
         const savedImage = localStorage.getItem(`product-image-${index}`);
         if (savedImage) {
-          const placeholderDiv = card.querySelector('.placeholder-img');
+          const placeholderDiv = card.
+                  console.log('Modal script loaded! Cards found:', document.querySelectorAll('.product-card').length);querySelector('.placeholder-img');
           placeholderDiv.innerHTML = `<img src="${savedImage}" alt="Product" class="w-full h-full object-cover">`;
         }
       });
