@@ -498,7 +498,7 @@
 
     // Load saved images on page load
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('load', () => {
       productCards.forEach((card, index) => {
         const savedImage = localStorage.getItem(`product-image-${index}`);
         if (savedImage) {
