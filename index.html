@@ -3,53 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMASH & CHIPS Brasov - Burgeri Premium</title>
-    <meta name="description" content="Cei mai buni burgeri smash din Brasov! Comandă online pe Bolt Food.">
+    <title>SMASH & CHIPS Brașov - Burgeri Premium</title>
+    <meta name="description" content="Cei mai buni burgeri smash din Brașov! Comandă online pe Bolt Food.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-// Global function for onclick
-        const productData = {
-  'CLASSIC SMASHED': {price: '38.00 LEI', desc: 'Burger clasic smash cu carne proaspătă', ing: 'Palină carne 90g, Sos burger 30g, Cheddar 16g, Salată 15g, Castraveți 15g, Chifla 70g', nut: 'Per 100g: 270 Kcal, Grăsimi 16g, Proteine 12.5g', alerg: 'Gluten, Ouă, Lapte, Susan, Muștar'},
-  'CLASSIC DOUBLE SMASHED': {price: '48.00 LEI', desc: 'Dublu burger smash pentru apetit mare', ing: 'Dublu palină 180g, Sos burger, Dublu cheddar, Salată, Castraveți', nut: 'Per 100g: 280 Kcal, Grăsimi 18g', alerg: 'Gluten, Ouă, Lapte, Susan'},
-  'IUTE-N GURA': {price: '38.00 LEI', desc: 'Burger picant cu jalapeño și sos spicy', ing: 'Palină 90g, Jalapeño, Sos picant, Cheddar, Salată', nut: 'Per 100g: 275 Kcal, Grăsimi 17g', alerg: 'Gluten, Ouă, Lapte'}
-};
-function openModal(name) {
-  const p = productData[name] || {price: '0 LEI', desc: 'Produs delicios', ing: 'Detalii în curând', nut: 'Informații în curând', alerg: 'Consultați personalul'};
-  const m = document.createElement('div');
-  m.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-  m.innerHTML = `<div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"><div class="sticky top-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6"><div class="flex justify-between"><h2 class="text-2xl font-bold">${name}</h2><button onclick="this.closest('.fixed').remove()" class="text-3xl">×</button></div><p class="text-3xl font-bold mt-2">${p.price}</p></div><div class="p-6 space-y-4"><div><h3 class="font-bold text-lg">📝 Descriere</h3><p class="text-gray-600">${p.desc}</p></div><div><h3 class="font-bold text-lg">🥘 Ingrediente</h3><p class="text-gray-600">${p.ing}</p></div><div><h3 class="font-bold text-lg">📊 Valori Nutriționale</h3><p class="text-gray-600">${p.nut}</p></div><div><h3 class="font-bold text-lg">⚠️ Alergeni</h3><p class="text-gray-600">${p.alerg}</p></div><button onclick="window.open('https://bolt.eu/','_blank')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg">Comandă pe Bolt Food</button></div></div>`;
-  m.onclick = e => e.target === m && m.remove();
-  document.body.appendChild(m);
-}
-</script>
-        <style>
+    <style>
         .gradient-bg { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
-        .card-hover { transition: all 0.3s ease; }
+        .card-hover { transition: all 0.3s ease; cursor: pointer; }
         .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         .placeholder-img { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
-        .category-badge { display: inline-block; padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; transition: all 0.3s; }
-        .category-badge:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <span class="text-4xl">🍔</span>
+                    <div class="text-4xl">🍔</div>
                     <div>
                         <h1 class="text-2xl font-bold">SMASH & CHIPS</h1>
-                        <p class="text-sm opacity-90">Brasov</p>
+                        <p class="text-sm opacity-90">Brașov</p>
                     </div>
                 </div>
-                <a href="https://bolt.eu" target="_blank" class="bg-white text-orange-500 px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition">Comandă pe Bolt</a>
+                <a href="https://bolt.eu/" target="_blank" class="bg-white text-orange-500 px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition">Comandă pe Bolt</a>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <div class="gradient-bg text-white py-16">
+    <section class="gradient-bg text-white py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl font-bold mb-4">🍔 Burgeri Smash Premium</h2>
             <p class="text-xl mb-8 opacity-90">Cei mai buni burgeri din Brașov! Comandă acum pe Bolt Food</p>
@@ -68,591 +51,134 @@ function openModal(name) {
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="container mx-auto px-4 py-8">
-        <div class="flex justify-center gap-4 flex-wrap">
-            <button onclick="filterProducts('all')" class="category-badge bg-orange-500 text-white" id="filter-all">Toate (20)</button>
-            <button onclick="filterProducts('burger')" class="category-badge bg-white border-2 border-orange-500 text-orange-500" id="filter-burger">🍔 Burgeri (8)</button>
-            <button onclick="filterProducts('cartofi')" class="category-badge bg-white border-2 border-orange-500 text-orange-500" id="filter-cartofi">🍟 Cartofi (4)</button>
-            <button onclick="filterProducts('bauturi')" class="category-badge bg-white border-2 border-orange-500 text-orange-500" id="filter-bauturi">🥤 Băuturi (3)</button>
-            <button onclick="filterProducts('sos')" class="category-badge bg-white border-2 border-orange-500 text-orange-500" id="filter-sos">🧂 Sosuri (5)</button>
-        </div>
-    </div>
+    </section>
 
     <!-- Products Grid -->
-    <div class="container mx-auto px-4 pb-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
-            
-            <!-- BURGERI -->
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger" onclick="openModal('CLASSIC SMASHED')">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍔</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">CLASSIC SMASHED</h3>
-                    <p class="text-gray-600 text-sm mb-3">Burger clasic smash cu carne proaspătă</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">38.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger onclick="openModal('CLASSIC DOUBLE SMASHED')">>
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍔</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">CLASSIC DOUBLE SMASHED</h3>
-                    <p class="text-gray-600 text-sm mb-3">Dublu burger smash pentru apetit mare</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">48.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🌶️</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2"198/h3>
-                    <p class="text-gray-600 text-sm mb-3">Burger picant cu jalapeño și sos spicy</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">38.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥓</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">BBQ BACON</h3>
-                    <p class="text-gray-600 text-sm mb-3">Burger cu bacon crocant și sos BBQ</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">41.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥓</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">BBQ BACON DOUBLE SMASHED</h3>
-                    <p class="text-gray-600 text-sm mb-3">Dublu burger cu bacon și BBQ</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">52.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🌶️</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">DOUBLE IUTE-N GURA</h3>
-                    <p class="text-gray-600 text-sm mb-3">Dublu burger extra picant</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">48.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍄</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">DOUBLE CHAMPIGNON BLUES</h3>
-                    <p class="text-gray-600 text-sm mb-3">Dublu burger cu ciuperci și blue cheese</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">51.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-                <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍄</div>
-                <div class="p-4">
-                    <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-                    <h3 class="text-xl font-bold mb-2">CHAMPIGNON BLUES</h3>
-                    <p class="text-gray-600 text-sm mb-3">Burger cu ciuperci proaspete și blue cheese</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-orange-500">40.00 LEI</span>
-                    </div>
-                </div>
-            </div>
-
-        <!-- More Burgers -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">        <!-- Product 1 -->
         <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍔</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-            <h3 class="text-xl font-bold mb-2">CLASSIC SINGLE SMASHED</h3>
-            <p class="text-gray-600 text-sm mb-3">Burger clasic cu carne smashed</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">38.00 LEI</span>
+            <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍔</div>
+            <div class="p-4">
+                <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
+                <h3 class="text-xl font-bold mb-2">CLASSIC SMASHED</h3>
+                <p class="text-gray-600 text-sm mb-3">Burger clasic smash cu carne proaspătă</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-orange-500">38.00 LEI</span>
+                </div>
             </div>
-          </div>
         </div>
 
+        <!-- Product 2 -->
         <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🧀</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
-            <h3 class="text-xl font-bold mb-2">IUTE-N GURA</h3 onclick="openModal('IUTE-N GURA')">
-            <p class="text-gray-600 text-sm mb-3">Burger picant pentru amatori</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">38.00 LEI</span>
+            <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍔</div>
+            <div class="p-4">
+                <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
+                <h3 class="text-xl font-bold mb-2">CLASSIC DOUBLE SMASHED</h3>
+                <p class="text-gray-600 text-sm mb-3">Dublu burger smash pentru apetit mare</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-orange-500">48.00 LEI</span>
+                </div>
             </div>
-          </div>
         </div>
 
-        <!-- Cartofi / Fries -->
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="cartofi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🍟</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold mb-2">🍟 CARTOFI</span>
-            <h3 class="text-xl font-bold mb-2">CARTOFI</h3>
-            <p class="text-gray-600 text-sm mb-3">Cartofi prăjiți clasici</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">8.79 LEI</span>
+        <!-- Product 3 -->
+        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
+            <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🌶️</div>
+            <div class="p-4">
+                <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
+                <h3 class="text-xl font-bold mb-2">IUTE-N GURA</h3>
+                <p class="text-gray-600 text-sm mb-3">Burger picant cu jalapeño și sos spicy</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-orange-500">38.00 LEI</span>
+                </div>
             </div>
-          </div>
         </div>
 
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="cartofi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🧀</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold mb-2">🍟 CARTOFI</span>
-            <h3 class="text-xl font-bold mb-2">CARTOFI CU BRÂNZĂ</h3>
-            <p class="text-gray-600 text-sm mb-3">Cartofi cu brânză topită</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">15.00 LEI</span>
+        <!-- Product 4 -->
+        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="burger">
+            <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥓</div>
+            <div class="p-4">
+                <span class="inline-block px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-2">🍔 BURGER</span>
+                <h3 class="text-xl font-bold mb-2">BBQ BACON</h3>
+                <p class="text-gray-600 text-sm mb-3">Burger cu bacon crocant și sos BBQ</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-orange-500">41.00 LEI</span>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="cartofi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥓</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold mb-2">🍟 CARTOFI</span>
-            <h3 class="text-xl font-bold mb-2">CARTOFI CU BACON</h3>
-            <p class="text-gray-600 text-sm mb-3">Cartofi cu bacon crocant</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">18.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="cartofi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥓</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm font-semibold mb-2">🍟 CARTOFI</span>
-            <h3 class="text-xl font-bold mb-2">CARTOFI CU BRÂNZĂ ȘI BACON</h3>
-            <p class="text-gray-600 text-sm mb-3">Cartofi cu brânză și bacon</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">20.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Băuturi / Drinks -->
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="bauturi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥤</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-2">🥤 BĂUTURI</span>
-            <h3 class="text-xl font-bold mb-2">APA 500ML</h3>
-            <p class="text-gray-600 text-sm mb-3">Apă minerală</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">5.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="bauturi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥤</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-2">🥤 BĂUTURI</span>
-            <h3 class="text-xl font-bold mb-2">COCA COLA 330ML</h3>
-            <p class="text-gray-600 text-sm mb-3">Coca Cola doză</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">7.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="bauturi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥤</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-2">🥤 BĂUTURI</span>
-            <h3 class="text-xl font-bold mb-2">COCA COLA ZERO 330ML</h3>
-            <p class="text-gray-600 text-sm mb-3">Coca Cola Zero doză</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">7.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="bauturi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥤</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-2">🥤 BĂUTURI</span>
-            <h3 class="text-xl font-bold mb-2">FANTA 330ML</h3>
-            <p class="text-gray-600 text-sm mb-3">Fanta portocale doză</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">7.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="bauturi">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🥤</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-2">🥤 BĂUTURI</span>
-            <h3 class="text-xl font-bold mb-2">SPRITE 330ML</h3>
-            <p class="text-gray-600 text-sm mb-3">Sprite doză</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">7.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sosuri / Sauces -->
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="sos">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🌶️</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold mb-2">🌶️ SOS</span>
-            <h3 class="text-xl font-bold mb-2">SOS KETCHUP</h3>
-            <p class="text-gray-600 text-sm mb-3">Sos ketchup clasic</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">2.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="sos">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🌶️</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold mb-2">🌶️ SOS</span>
-            <h3 class="text-xl font-bold mb-2">SOS MAIONEZĂ</h3>
-            <p class="text-gray-600 text-sm mb-3">Sos maioneză cremos</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">2.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card card-hover bg-white rounded-xl shadow-lg overflow-hidden" data-category="sos">
-          <div class="placeholder-img h-48 flex items-center justify-center text-6xl">🌶️</div>
-          <div class="p-4">
-            <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold mb-2">🌶️ SOS</span>
-            <h3 class="text-xl font-bold mb-2">SOS BBQ</h3>
-            <p class="text-gray-600 text-sm mb-3">Sos BBQ</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-orange-500">2.00 LEI</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
 
     <!-- Admin Section -->
-    <div id="admin-section" class="container mx-auto px-4 py-12">
-      <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">📸 Administrare Poze</h2>
-        <p class="text-gray-600 mb-6">Încărcați pozele pentru produse. Imagini recomandate: 800x600px, format JPG/PNG.</p>
-        
-        <div class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Selectați Produsul</label>
-            <select id="product-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-              <option value="">-- Alege un produs --</option>
-            </select>
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Încărcați Poza</label>
-            <input type="file" id="photo-upload" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
-          </div>
-          
-          <div id="preview-container" class="hidden">
-            <p class="text-sm font-medium text-gray-700 mb-2">Preview:</p>
-            <img id="photo-preview" class="w-full max-w-md rounded-lg border-2 border-gray-200" alt="Preview">
-          </div>
-          
-          <button id="upload-btn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
-            Salvează Poza
-          </button>
-          
-          <div id="admin-message" class="hidden p-4 rounded-lg"></div>
+    <div class="container mx-auto px-4 py-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">📸 Administrare Poze</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Selectați Produsul</label>
+                    <select id="product-select" class="w-full px-4 py-2 border rounded-lg"></select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Încărcați Poza</label>
+                    <input type="file" id="photo-upload" accept="image/*" class="w-full px-4 py-2 border rounded-lg">
+                </div>
+                <button id="upload-btn" class="w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition">Salvează Poza</button>
+                <div id="admin-message" class="hidden p-4 rounded-lg text-center"></div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-      <div class="container mx-auto px-4 text-center">
-        <p class="text-lg">&copy; 2024 SMASH & CHIPS Brasov. Toate drepturile rezervate.</p>
-        <p class="text-sm text-gray-400 mt-2">Brașov, România | Contact: info@smashchips.ro</p>
-      </div>
+    <footer class="bg-gray-800 text-white py-8 mt-12 text-center">
+        <p>© 2024 SMASH & CHIPS Brașov. Toate drepturile rezervate.</p>
     </footer>
-  </div>
 
-  <script>
-    // Filter functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-
-<script>
-      btn.addEventListener('click', () => {
-            // Test fix
-        // Remove active class from all buttons
-        filterBtns.forEach(b => {
-          b.classList.remove('bg-orange-500', 'text-white');
-          b.classList.add('bg-gray-200', 'text-gray-700');
-        });
-        
-        // Add active class to clicked button
-        btn.classList.remove('bg-gray-200', 'text-gray-700');
-        btn.classList.add('bg-orange-500', 'text-white');
-        
-        const filter = btn.getAttribute('data-filter');
-        
-        productCards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Admin functionality
-    const productSelect = document.getElementById('product-select');
-    const photoUpload = document.getElementById('photo-upload');
-    const photoPreview = document.getElementById('photo-preview');
-    const previewContainer = document.getElementById('preview-container');
-    const uploadBtn = document.getElementById('upload-btn');
-    const adminMessage = document.getElementById('admin-message');
-
-    // Populate product dropdown
-    productCards.forEach((card, index) => {
-      const title = card.querySelector('h3').textContent;
-      const category = card.getAttribute('data-category');
-      const option = document.createElement('option');
-      option.value = index;
-      option.textContent = `${title} (${category})`;
-      productSelect.appendChild(option);
-    });
-
-    // Preview image on file select
-    photoUpload.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          photoPreview.src = event.target.result;
-          previewContainer.classList.remove('hidden');
+    <script>
+        const productData = {
+            'CLASSIC SMASHED': { price: '38.00 LEI', desc: 'Burger clasic smash cu carne proaspătă', ing: 'Carne vită 90g, Sos, Cheddar, Salată, Castraveți, Chiflă', nut: '270 Kcal/100g', alerg: 'Gluten, Ouă, Lapte' },
+            'CLASSIC DOUBLE SMASHED': { price: '48.00 LEI', desc: 'Dublu burger smash pentru apetit mare', ing: '2x Carne vită 90g, 2x Cheddar, Sos, Salată, Chiflă', nut: '280 Kcal/100g', alerg: 'Gluten, Ouă, Lapte' },
+            'IUTE-N GURA': { price: '38.00 LEI', desc: 'Burger picant cu jalapeño și sos spicy', ing: 'Carne vită, Jalapeño, Sos picant, Cheddar', nut: '275 Kcal/100g', alerg: 'Gluten, Ouă, Lapte' },
+            'BBQ BACON': { price: '41.00 LEI', desc: 'Burger cu bacon crocant și sos BBQ', ing: 'Carne vită, Bacon, Sos BBQ, Cheddar', nut: '290 Kcal/100g', alerg: 'Gluten, Lapte' }
         };
-        reader.readAsDataURL(file);
-      }
-    });
 
-    // Upload button handler
-    uploadBtn.addEventListener('click', () => {
-      const selectedIndex = productSelect.value;
-      const file = photoUpload.files[0];
-      
-      if (!selectedIndex) {
-        showMessage('Vă rugăm selectați un produs!', 'error');
-        return;
-      }
-      
-      if (!file) {
-        showMessage('Vă rugăm selectați o poză!', 'error');
-        return;
-      }
-      
-      // Read the file and save to localStorage
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageData = event.target.result;
-        localStorage.setItem(`product-image-${selectedIndex}`, imageData);
-        
-        // Update the product card image
-        const selectedCard = productCards[selectedIndex];
-        const placeholderDiv = selectedCard.querySelector('.placeholder-img');
-        placeholderDiv.innerHTML = `<img src="${imageData}" alt="Product" class="w-full h-full object-cover">`;
-        
-        showMessage('Poza a fost salvată cu succes! \u2705', 'success');
-        
-        // Reset form
-        productSelect.value = '';
-        photoUpload.value = '';
-        previewContainer.classList.add('hidden');
-      };
-      reader.readAsDataURL(file);
-    });
-
-    function showMessage(text, type) {
-      adminMessage.textContent = text;
-      adminMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
-      
-      if (type === 'error') {
-        adminMessage.classList.add('bg-red-100', 'text-red-700');
-      } else {
-        adminMessage.classList.add('bg-green-100', 'text-green-700');
-      }
-      
-      setTimeout(() => {
-        adminMessage.classList.add('hidden');
-      }, 3000);
-    }
-
-    // Load saved images on page load
-
-    window.addEventListener('load', () => {
-      productCards.forEach((card, index) => {
-        const savedImage = localStorage.getItem(`product-image-${index}`);
-        if (savedImage) {
-          const placeholderDiv = card.querySelector('.placeholder-img');
-
-                // Event delegation for ALL product cards
-    const productsGrid = document.getElementById('products-grid');
-    if (productsGrid) {
-        productsGrid.addEventListener('click', (e) => {
+        // Event Delegation for Modals
+        document.getElementById('products-grid').addEventListener('click', (e) => {
             const card = e.target.closest('.product-card');
             if (card) {
-                const title = card.querySelector('h3');
-                if (title) {
-                    const productName = title.textContent;
-                    // Try to find in productData first
-                    const data = productData[productName];
-                    if (data) {
-                        openModal(productName);
-                    } else {
-                        // For products not in productData, still open modal
-                        openModal(productName);
-                    }
-                }
+                const title = card.querySelector('h3').textContent.trim();
+                const p = productData[title] || { price: 'N/A', desc: 'Detalii în curând', ing: 'N/A', nut: 'N/A', alerg: 'N/A' };
+                showModal(title, p);
             }
         });
-    }
-                            placeholderDiv.innerHTML = `<img src="${savedImage}" alt="Product" class="w-full h-full object-cover">`;
-        }
-      });
-        
-    // Product details data
-    const productDetails = {
-      'CLASSIC SMASHED': {
-        name: 'CLASSIC SMASHED',
-        price: '38.00 LEI',
-        description: 'Burger clasic smash cu carne proaspătă',
-        ingredients: 'Palină carne: 90.0g, Sos burger: 30.0g, Cheddar: 16.0g, Salată verde: 15.0g, Castraveți murați: 15.0g, Chifla: 70.0g',
-        nutrition: 'Per 100g: 270 Kcal, Grăsimi: 16g, Proteine: 12.5g, Glucide: 18g',
-        allergens: 'Gluten, Ouă, Lapte, Susan, Muștar'
-      },
-      'CLASSIC DOUBLE SMASHED': {
-        name: 'CLASSIC DOUBLE SMASHED',
-        price: '48.00 LEI',
-        description: 'Dublu burger smash pentru apetit mare',
-        ingredients: 'Dublu palină carne: 180.0g, Sos burger, Dublu cheddar, Salată verde, Castraveți murați, Chifla',
-        nutrition: 'Per 100g: 280 Kcal, Grăsimi: 18g, Proteine: 15g',
-        allergens: 'Gluten, Ouă, Lapte, Susan, Muștar'
-      },
-      'IUTE-N GURA': {
-        name: 'IUTE-N GURA',
-        price: '38.00 LEI',
-        description: 'Burger picant cu jalapeño și sos spicy',
-        ingredients: 'Palină carne: 90.0g, Jalapeño, Sos picant, Cheddar, Salată, Chifla',
-        nutrition: 'Per 100g: 275 Kcal, Grăsimi: 17g, Proteine: 13g',
-        allergens: 'Gluten, Ouă, Lapte, Susan, Muștar'
-      }
-    };
-        
-    // Add click handlers to product cards
-    const modalCards = document.querySelectorAll('.product-card');
-    
-    modalCards.forEach((card) => {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', () => {
-        const title = card.querySelector('h3').textContent;
-        const details = productDetails[title];
-        
-        if (details) {
-          showProductModal(details);
-        } else {
-          const price = card.querySelector('.text-orange-500').textContent;
-          const desc = card.querySelector('.text-gray-600').textContent;
-          showProductModal({
-            name: title,
-            price: price,
-            description: desc,
-            ingredients: 'Detalii complete disponibile în curând',
-            nutrition: 'Informații nutriționale disponibile în curând',
-            allergens: 'Consultați personalul pentru alergeni'
-          });
-        }
-      });
-    });
-    
-    function showProductModal(product) {
-      const modal = document.createElement('div');
-      modal.id = 'product-modal';
-      modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-      modal.style.display = 'flex';
-      
-      modal.innerHTML = `
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-          <div class="sticky top-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-t-2xl">
-            <div class="flex justify-between items-center">
-              <h2 class="text-2xl font-bold">${product.name}</h2>
-              <button onclick="document.getElementById('product-modal').remove()" class="text-white hover:text-gray-200 text-3xl">×</button>
-            </div>
-            <p class="text-3xl font-bold mt-2">${product.price}</p>
-          </div>
-          
-          <div class="p-6 space-y-6">
-            <div>
-              <h3 class="text-lg font-bold text-gray-800 mb-2">📝 Descriere</h3>
-              <p class="text-gray-600">${product.description}</p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold text-gray-800 mb-2">🥘 Ingrediente</h3>
-              <p class="text-gray-600">${product.ingredients}</p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold text-gray-800 mb-2">📊 Valori Nutriționale</h3>
-              <p class="text-gray-600">${product.nutrition}</p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold text-gray-800 mb-2">⚠️ Alergeni</h3>
-              <p class="text-gray-600">${product.allergens}</p>
-            </div>
-            
-            <button onclick="window.open('https://bolt.eu/', '_blank')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg transition duration-200">
-              Comandă Acum pe Bolt Food
-            </button>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(modal);
-      
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.remove();
-        }
-      });
-    }
-    });
-          >
-    </body>
 
-    
+        function showModal(name, p) {
+            const m = document.createElement('div');
+            m.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            m.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+                    <div class="sticky top-0 bg-orange-500 text-white p-6 flex justify-between items-center">
+                        <h2 class="text-2xl font-bold">${name}</h2>
+                        <button onclick="this.closest('.fixed').remove()" class="text-3xl">&times;</button>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <p class="text-3xl font-bold text-orange-500">${p.price}</p>
+                        <div><h3 class="font-bold">📝 Descriere</h3><p>${p.desc}</p></div>
+                        <div><h3 class="font-bold">🥘 Ingrediente</h3><p>${p.ing}</p></div>
+                        <div><h3 class="font-bold">📊 Nutriție</h3><p>${p.nut}</p></div>
+                        <div><h3 class="font-bold">⚠️ Alergeni</h3><p>${p.alerg}</p></div>
+                        <button onclick="window.open('https://bolt.eu/','_blank')" class="w-full bg-orange-500 text-white py-4 rounded-xl font-bold">Comandă pe Bolt Food</button>
+                    </div>
+                </div>`;
+            m.onclick = (e) => e.target === m && m.remove();
+            document.body.appendChild(m);
+        }
+
+        // Admin Populate
+        const select = document.getElementById('product-select');
+        document.querySelectorAll('.product-card h3').forEach((h3, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = h3.textContent;
+            select.appendChild(opt);
+        });
+    </script>
+</body>
 </html>
