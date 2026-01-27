@@ -27,12 +27,9 @@ const productDetails = {
   }
 };
 
-// Initialize modal functionality when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
   // Add click handlers to product cards
   const productCards = document.querySelectorAll('.product-card');
   
-    card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
       const title = card.querySelector('h3').textContent;
       const details = productDetails[title];
@@ -106,5 +103,4 @@ function showProductModal(product) {
     if (e.target === modal) {
       modal.remove();
     }
-  });
 }
