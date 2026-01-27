@@ -518,6 +518,28 @@ function openModal(name) {
         const savedImage = localStorage.getItem(`product-image-${index}`);
         if (savedImage) {
           const placeholderDiv = card.querySelector('.placeholder-img');
+
+                // Event delegation for ALL product cards
+    const productsGrid = document.getElementById('products-grid');
+    if (productsGrid) {
+        productsGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('.product-card');
+            if (card) {
+                const title = card.querySelector('h3');
+                if (title) {
+                    const productName = title.textContent;
+                    // Try to find in productData first
+                    const data = productData[productName];
+                    if (data) {
+                        openModal(productName);
+                    } else {
+                        // For products not in productData, still open modal
+                        openModal(productName);
+                    }
+                }
+            }
+        });
+    }
                             placeholderDiv.innerHTML = `<img src="${savedImage}" alt="Product" class="w-full h-full object-cover">`;
         }
       });
