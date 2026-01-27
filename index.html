@@ -8,13 +8,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
 // Global function for onclick
-function openModal(productName) {
-  alert('MODAL: ' + productName);
+        const productData = {
+  'CLASSIC SMASHED': {price: '38.00 LEI', desc: 'Burger clasic smash cu carne proaspătă', ing: 'Palină carne 90g, Sos burger 30g, Cheddar 16g, Salată 15g, Castraveți 15g, Chifla 70g', nut: 'Per 100g: 270 Kcal, Grăsimi 16g, Proteine 12.5g', alerg: 'Gluten, Ouă, Lapte, Susan, Muștar'},
+  'CLASSIC DOUBLE SMASHED': {price: '48.00 LEI', desc: 'Dublu burger smash pentru apetit mare', ing: 'Dublu palină 180g, Sos burger, Dublu cheddar, Salată, Castraveți', nut: 'Per 100g: 280 Kcal, Grăsimi 18g', alerg: 'Gluten, Ouă, Lapte, Susan'},
+  'IUTE-N GURA': {price: '38.00 LEI', desc: 'Burger picant cu jalapeño și sos spicy', ing: 'Palină 90g, Jalapeño, Sos picant, Cheddar, Salată', nut: 'Per 100g: 275 Kcal, Grăsimi 17g', alerg: 'Gluten, Ouă, Lapte'}
+};
+function openModal(name) {
+  const p = productData[name] || {price: '0 LEI', desc: 'Produs delicios', ing: 'Detalii în curând', nut: 'Informații în curând', alerg: 'Consultați personalul'};
+  const m = document.createElement('div');
+  m.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+  m.innerHTML = `<div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"><div class="sticky top-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6"><div class="flex justify-between"><h2 class="text-2xl font-bold">${name}</h2><button onclick="this.closest('.fixed').remove()" class="text-3xl">×</button></div><p class="text-3xl font-bold mt-2">${p.price}</p></div><div class="p-6 space-y-4"><div><h3 class="font-bold text-lg">📝 Descriere</h3><p class="text-gray-600">${p.desc}</p></div><div><h3 class="font-bold text-lg">🥘 Ingrediente</h3><p class="text-gray-600">${p.ing}</p></div><div><h3 class="font-bold text-lg">📊 Valori Nutriționale</h3><p class="text-gray-600">${p.nut}</p></div><div><h3 class="font-bold text-lg">⚠️ Alergeni</h3><p class="text-gray-600">${p.alerg}</p></div><button onclick="window.open('https://bolt.eu/','_blank')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg">Comandă pe Bolt Food</button></div></div>`;
+  m.onclick = e => e.target === m && m.remove();
+  document.body.appendChild(m);
 }
 </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-        * { font-family: 'Poppins', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
