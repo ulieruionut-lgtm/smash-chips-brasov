@@ -496,8 +496,8 @@
       }, 3000);
     }
 
-    // 510
-      on page load
+    // Load saved images on page load
+
     window.addEventListener('DOMContentLoaded', () => {
       productCards.forEach((card, index) => {
         const savedImage = localStorage.getItem(`product-image-${index}`);
