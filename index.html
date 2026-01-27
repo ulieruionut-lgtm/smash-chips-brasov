@@ -389,15 +389,12 @@
     // Filter functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
-<script>
-// Global modal function
-function openModal(productName) {
-  alert('Modal pentru: ' + productName);
-}
-</script>
 
-      
-    filterBtns.forEach(btn => {
+      // Global modal function
+function openModal(productName) {
+  alert('Click pe: ' + productName);
+}
+<script>
       btn.addEventListener('click', () => {
         // Remove active class from all buttons
         filterBtns.forEach(b => {
