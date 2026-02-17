@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SMASH & CHIPS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            margin-left: 10px;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .hidden {
+            display: none;
+        }
+        .product-list {
+            margin-top: 30px;
+        }
+        .product-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .product-actions button {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .logout-btn {
+            background: #dc3545;
+            padding: 10px 20px;
+        }
+        .form-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .success-msg {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="loginContainer" class="login-container">
+        <h1 style="text-align: center;">🔐 Admin Panel</h1>
+        <div class="form-group">
+            <label for="password">Parolă:</label>
+            <input type="password" id="password" placeholder="Introdu parola">
+        </div>
+        <button onclick="login()" style="width: 100%;">Login</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminContainer" class="admin-container hidden">
+        <div class="header">
+            <h1>📊 Administrare Produse</h1>
+            <button class="logout-btn" onclick="logout()">Deconectare</button>
+        </div>
+
+        <div id="successMsg" class="success-msg"></div>
+
+        <!-- Add/Edit Product Form -->
+        <div class="form-section">
+            <h2 id="formTitle">➕ Adaugă Produs Nou</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Nume Produs:</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Categorie:</label>
+                    <select id="productCategory" required>
+                        <option value="SOS">SOS</option>
+                        <option value="Cartofi">Cartofi</option>
+                        <option value="Burgeri">Burgeri</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productCategoryEmoji">Emoji Categorie:</label>
+                    <input type="text" id="productCategoryEmoji" placeholder="🔥">
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Descriere:</label>
+                    <textarea id="productDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Preț (RON):</label>
+                    <input type="text" id="productPrice" placeholder="7.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Imagine (numele fișierului):</label>
+                    <input type="text" id="productImage" placeholder="burger.png" required>
+                </div>
+                <div class="form-group">
+                    <label for="productIngredients">Ingrediente:</label>
+                    <input type="text" id="productIngredients" placeholder="Chifla, Carne, Sos...">
+                </div>
+                <div class="form-group">
+                    <label for="productAllergens">Alergeni:</label>
+                    <input type="text" id="productAllergens" placeholder="-">
+                </div>
+                <div class="form-group">
+                    <label for="productNutrition">Valori Nutriționale:</label>
+                    <input type="text" id="productNutrition" placeholder="130 Kcal/100g">
+                </div>
+                <button type="submit">💾 Salvează</button>
+                <button type="button" class="btn-secondary" onclick="resetForm()">Anulează</button>
+            </form>
+        </div>
+
+        <!-- Products List -->
+        <div class="product-list">
+            <h2>📦 Lista Produse</h2>
+            <div id="productsList"></div>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD = "Pasaj2012";
+        let products = [];
+        let editingId = null;
+
+        // Login function
+        function login() {
+            const password = document.getElementById('password').value;
+            if (password === PASSWORD) {
+                document.getElementById('loginContainer').classList.add('hidden');
+                document.getElementById('adminContainer').classList.remove('hidden');
+                loadProducts();
+            } else {
+                alert('Parolă incorectă!');
+            }
+        }
+
+        // Logout function
+        function logout() {
+            document.getElementById('adminContainer').classList.add('hidden');
+            document.getElementById('loginContainer').classList.remove('hidden');
+            document.getElementById('password').value = '';
+        }
+
+        // Load products from JSON
+        async function loadProducts() {
+            try {
+                const response = await fetch('products.json');
+                products = await response.json();
+                displayProducts();
+            } catch (error) {
+                console.error('Error loading products:', error);
+                alert('Eroare la încărcarea produselor!');
+            }
+        }
+
+        // Display products
+        function displayProducts() {
+            const productsList = document.getElementById('productsList');
+            productsList.innerHTML = '';
+            
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product-item';
+                productDiv.innerHTML = `
+                    <div class="product-info">
+                        <h3>${product.name} - ${product.price} RON</h3>
+                        <p>${product.category} | ${product.description}</p>
+                        <p style="font-size: 12px; color: #999;">Imagine: ${product.image}</p>
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="editProduct(${product.id})">✏️ Editează</button>
+                        <button class="btn-danger" onclick="deleteProduct(${product.id})">🗑️ Șterge</button>
+                    </div>
+                `;
+                productsList.appendChild(productDiv);
+            });
+        }
+
+        // Form submit
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const product = {
+                id: editingId || (products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1),
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                categoryEmoji: document.getElementById('productCategoryEmoji').value,
+                description: document.getElementById('productDescription').value,
+                price: document.getElementById('productPrice').value,
+                image: document.getElementById('productImage').value,
+                ingredients: document.getElementById('productIngredients').value,
+                allergens: document.getElementById('productAllergens').value,
+                nutrition: document.getElementById('productNutrition').value
+            };
+
+            if (editingId) {
+                const index = products.findIndex(p => p.id === editingId);
+                products[index] = product;
+                showSuccess('Produs actualizat cu succes!');
+            } else {
+                products.push(product);
+                showSuccess('Produs adăugat cu succes!');
+            }
+
+            saveProducts();
+            resetForm();
+            displayProducts();
+        });
+
+        // Edit product
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                editingId = id;
+                document.getElementById('formTitle').textContent = '✏️ Editează Produs';
+                document.getElementById('productId').value = product.id;
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productCategory').value = product.category;
+                document.getElementById('productCategoryEmoji').value = product.categoryEmoji;
+                document.getElementById('productDescription').value = product.description;
+                document.getElementById('productPrice').value = product.price;
+                document.getElementById('productImage').value = product.image;
+                document.getElementById('productIngredients').value = product.ingredients;
+                document.getElementById('productAllergens').value = product.allergens;
+                document.getElementById('productNutrition').value = product.nutrition;
+                document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Delete product
+        function deleteProduct(id) {
+            if (confirm('Sigur vrei să ștergi acest produs?')) {
+                products = products.filter(p => p.id !== id);
+                saveProducts();
+                displayProducts();
+                showSuccess('Produs șters cu succes!');
+            }
+        }
+
+        // Reset form
+        function resetForm() {
+            document.getElementById('productForm').reset();
+            editingId = null;
+            document.getElementById('formTitle').textContent = '➕ Adaugă Produs Nou';
+        }
+
+        // Save products (shows JSON in console - for real app, need backend)
+        function saveProducts() {
+            console.log('Produse actualizate:', JSON.stringify(products, null, 2));
+            alert('IMPORTANT: Pentru a salva modificările permanent, copiază JSON-ul din consolă și actualizează fișierul products.json pe GitHub!');
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const successMsg = document.getElementById('successMsg');
+            successMsg.textContent = message;
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+
+        // Allow Enter key for login
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>
