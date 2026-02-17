@@ -243,7 +243,8 @@
         async function loadProducts() {
             try {
                 const response = await fetch('products.json');
-                products = await response.json().products;
+                const data = await response.json();
+                products = data.products;
                 displayProducts();
             } catch (error) {
                 console.error('Error loading products:', error);
