@@ -262,5 +262,17 @@
     "ingredients": "Blue Cheese, Smântână",
     "nutrition": "170 Kcal/100g",
     "allergens": "Lapte"
+  },
+  {
+    "id": 23,
+    "name": "dovelec",
+    "category": "Burgeri",
+    "categoryEmoji": "",
+    "description": "dddrs",
+    "price": "10",
+    "image": "pisica.jpg",
+    "ingredients": "ddd",
+    "allergens": "xxx",
+    "nutrition": ""
   }
 ]
