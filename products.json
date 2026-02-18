@@ -262,17 +262,5 @@
     "ingredients": "Blue Cheese, Smântână",
     "nutrition": "170 Kcal/100g",
     "allergens": "Lapte"
-  },
-  {
-    "id": 24,
-    "name": "test",
-    "category": "Burgeri",
-    "categoryEmoji": "",
-    "description": "sfddew",
-    "price": "12",
-    "image": "pisica.jpg",
-    "ingredients": "ddd",
-    "allergens": "",
-    "nutrition": ""
   }
 ]
