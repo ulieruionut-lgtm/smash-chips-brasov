@@ -274,5 +274,17 @@
     "ingredients": "",
     "allergens": "",
     "nutrition": ""
+  },
+  {
+    "id": 24,
+    "name": "dovelec",
+    "category": "Cartofi",
+    "categoryEmoji": "",
+    "description": "fff",
+    "price": "10",
+    "image": "APA DORNA MIN 0.5L.png",
+    "ingredients": "fassa",
+    "allergens": "dfs",
+    "nutrition": "12"
   }
 ]
