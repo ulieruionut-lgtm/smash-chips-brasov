@@ -262,17 +262,5 @@
     "ingredients": "Blue Cheese, Smântână",
     "nutrition": "170 Kcal/100g",
     "allergens": "Lapte"
-  },
-  {
-    "id": 24,
-    "name": "dovelec",
-    "category": "Cartofi",
-    "categoryEmoji": "",
-    "description": "fff",
-    "price": "10",
-    "image": "APA DORNA MIN 0.5L.png",
-    "ingredients": "fassa",
-    "allergens": "dfs",
-    "nutrition": "12"
   }
 ]
