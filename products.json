@@ -264,18 +264,6 @@
     "allergens": "Lapte"
   },
   {
-    "id": 23,
-    "name": "rosie",
-    "category": "Cartofi",
-    "categoryEmoji": "",
-    "description": "test",
-    "price": "13",
-    "image": "Classic smashed.png",
-    "ingredients": "",
-    "allergens": "",
-    "nutrition": ""
-  },
-  {
     "id": 24,
     "name": "dovelec",
     "category": "Cartofi",
