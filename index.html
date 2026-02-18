@@ -274,29 +274,25 @@
     </footer>
 
     <script>
-const productData = {
-    'CLASSIC SMASHED': {price: '38.00 LEI', desc: 'Burger clasic smash cu carne proaspătă', ing: 'Carne vită 90g, Sos, Cheddar, Salată, Castravețși, Chiflă', nut: '270 Kcal/100g', alerg: 'Gluten, Ouă, Lapte'},
-    'CLASSIC DOUBLE SMASHED': {price: '48.00 LEI', desc: 'Dublu burger smash pentru apetit mare', ing: '2x Carne vită 90g, 2x Cheddar, Sos, Salată, Chiflă', nut: '280 Kcal/100g', alerg: 'Gluten, Ouă, Lapte'},
-    'IUTE-N GURA': {price: '38.00 LEI', desc: 'Burger picant cu jalapeño și sos spicy', ing: 'Carne vită, Jalapeño, Sos picant, Cheddar', nut: '275 Kcal/100g', alerg: 'Gluten, Ouă, Lapte'},
-    'BBQ BACON': {price: '41.00 LEI', desc: 'Burger cu bacon crocant și sos BBQ', ing: 'Carne vită, Bacon, Sos BBQ, Cheddar', nut: '290 Kcal/100g', alerg: 'Gluten, Lapte'},
-    'BBQ BACON DOUBLE SMASHED': {price: '52.00 LEI', desc: 'Dublu burger cu bacon și BBQ', ing: '2x Carne vită, 2x Bacon, Sos BBQ, Cheddar', nut: '300 Kcal/100g', alerg: 'Gluten, Lapte'},
-    'DOUBLE IUTE-N GURA': {price: '48.00 LEI', desc: 'Dublu burger picant', ing: '2x Carne vită, Jalapeño, Sos picant, Cheddar', nut: '285 Kcal/100g', alerg: 'Gluten, Ouă, Lapte'},
-    'DOUBLE CHAMPIGNON BLUES': {price: '51.00 LEI', desc: 'Dublu burger cu ciuperci și blue cheese', ing: '2x Carne vită, Ciuperci, Blue Cheese, Chiflă', nut: '295 Kcal/100g', alerg: 'Gluten, Lapte'},
-    'CHAMPIGNON BLUES': {price: '40.00 LEI', desc: 'Burger cu ciuperci și blue cheese', ing: 'Carne vită, Ciuperci, Blue Cheese, Chiflă', nut: '280 Kcal/100g', alerg: 'Gluten, Lapte'},
-    'CARTOFI': {price: '12.99 LEI', desc: 'Cartofi prăjiți clasici', ing: 'Cartofi', nut: '312 Kcal/100g', alerg: '-'},
-    'CARTOFI CU USTUROI, PĂTRUNJEL, PARMEZAN ȘI BACON': {price: '19.50 LEI', desc: 'Cartofi deluxe', ing: 'Cartofi, Usturoi, Pătrunjel, Parmezan, Bacon', nut: '350 Kcal/100g', alerg: 'Lapte'},
-    'CARTOFI CU USTUROI, PĂTRUNJEL ȘI PARMEZAN': {price: '17.00 LEI', desc: 'Cartofi cu parmezan', ing: 'Cartofi, Usturoi, Pătrunjel, Parmezan', nut: '330 Kcal/100g', alerg: 'Lapte'},
-    'CARTOFI PRĂJIȚI CU USTUROI ȘI PĂTRUNJEL VERDE': {price: '15.00 LEI', desc: 'Cartofi cu usturoi', ing: 'Cartofi, Usturoi, Pătrunjel', nut: '320 Kcal/100g', alerg: '-'},
-    'KEBAB PUI': {price: '29.99 LEI', desc: 'Kebab cu pui proaspăt', ing: 'Pui, Legume, Sos', nut: '250 Kcal/100g', alerg: 'Gluten'},
-    'COMBO KEBAB PUI + CARTOFI 100gr': {price: '36.99 LEI', desc: 'Kebab cu cartofi', ing: 'Pui, Legume, Sos, Cartofi 100g', nut: '280 Kcal/100g', alerg: 'Gluten'},
-    'URSUS 0.33L': {price: '10.00 LEI', desc: 'Bere URSUS', ing: 'Bere', nut: '43 Kcal/100ml', alerg: 'Gluten'},
-    'APA DORNA MIN 0.5L': {price: '7.00 LEI', desc: 'Apă minerală', ing: 'Apă minerală', nut: '0 Kcal', alerg: '-'},
-    'APA DORNA PLATA 0.5L': {price: '7.00 LEI', desc: 'Apă plată', ing: 'Apă plată', nut: '0 Kcal', alerg: '-'},
-    'SOS DE USTUROI': {price: '6.00 LEI', desc: 'Sos usturoi', ing: 'Usturoi, Maioneză', nut: '150 Kcal/100g', alerg: 'Ouă'},
-    'EXTRA SOS BURGER': {price: '7.00 LEI', desc: 'Sos special burger', ing: 'Maioneză, Ketchup, Condimente', nut: '160 Kcal/100g', alerg: 'Ouă'},
-    'EXTRA SOS BBQ CHIPOTLE': {price: '7.00 LEI', desc: 'Sos BBQ picant', ing: 'BBQ, Chipotle', nut: '140 Kcal/100g', alerg: '-'},
-    'EXTRA SOS SRIRACHA HONEY': {price: '7.00 LEI', desc: 'Sos picant cu miere', ing: 'Sriracha, Miere', nut: '130 Kcal/100g', alerg: '-'},
-    'EXTRA SOS BLUE CHEESE': {price: '6.00 LEI', desc: 'Sos blue cheese', ing: 'Blue Cheese, Smântână', nut: '170 Kcal/100g', alerg: 'Lapte'}
+// Load products dynamically from products.json
+    let productData = {};
+    
+    fetch('products.json')
+      .then(response => response.json())
+      .then(products => {
+        // Convert array to object for modal compatibility
+        products.forEach(p => {
+          productData[p.name] = {
+            price: p.price + ' LEI',
+            desc: p.description,
+            ingredients: p.ingredients,
+            allergens: p.allergens,
+            nutrition: p.nutrition
+          };
+        });
+        console.log('Products loaded:', products.length);
+      })
+      .catch(err => console.error('Error loading products:', err)); 'EXTRA SOS BLUE CHEESE': {price: '6.00 LEI', desc: 'Sos blue cheese', ing: 'Blue Cheese, Smântână', nut: '170 Kcal/100g', alerg: 'Lapte'}
 };
 
 document.getElementById('products-grid').addEventListener('click', (e) => {
