@@ -262,5 +262,17 @@
     "ingredients": "Blue Cheese, Smântână",
     "nutrition": "170 Kcal/100g",
     "allergens": "Lapte"
+  },
+  {
+    "id": 23,
+    "name": "varza",
+    "category": "Burgeri",
+    "categoryEmoji": "",
+    "description": "dasf",
+    "price": "12",
+    "image": "APA DORNA PLATA 0.5L.png",
+    "ingredients": "ddd",
+    "allergens": "sssd",
+    "nutrition": ""
   }
 ]
