@@ -350,11 +350,29 @@
         }
 
         // Save products (shows JSON in console - for real app, need backend)
-        function saveProducts() {
-            console.log('Produse actualizate:', JSON.stringify(products, null, 2));
-            alert('IMPORTANT: Pentru a salva modificările permanent, copiază JSON-ul din consolă și actualizează fișierul products.json pe GitHub!');
-        }
+    // Save products to GitHub via API
+    async function saveProducts() {
+        try {
+            const response = await fetch('/api/save-products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ products })
+            });
 
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                showSuccess('✅ Produse salvate cu succes pe GitHub! Commit: ' + result.commit.substring(0, 7));
+            } else {
+                throw new Error(result.error || result.details || 'Eroare necunoscută');
+            }
+        } catch (error) {
+            console.error('Eroare la salvare:', error);
+            alert('❌ EROARE: Nu s-au putut salva produsele!\n\n' + error.message + '\n\nVerifică:\n1. GITHUB_TOKEN este configurat în Vercel\n2. Token-ul are permisiuni \'repo\'\n3. Consola browser pentru detalii');
+        }
+    }
         // Show success message
         function showSuccess(message) {
             const successMsg = document.getElementById('successMsg');
