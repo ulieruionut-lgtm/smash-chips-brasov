@@ -262,5 +262,29 @@
     "ingredients": "Blue Cheese, Smântână",
     "nutrition": "170 Kcal/100g",
     "allergens": "Lapte"
+  },
+  {
+    "id": 23,
+    "name": "varza",
+    "category": "Burgeri",
+    "categoryEmoji": "",
+    "description": "test",
+    "price": "120",
+    "image": "pisica.jpg",
+    "ingredients": "ddd",
+    "allergens": "xxx",
+    "nutrition": ""
+  },
+  {
+    "id": 24,
+    "name": "rosie",
+    "category": "SOS",
+    "categoryEmoji": "",
+    "description": "ddd",
+    "price": "10",
+    "image": "pisica.jpg",
+    "ingredients": "sss",
+    "allergens": "sssd",
+    "nutrition": ""
   }
 ]
