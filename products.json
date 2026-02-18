@@ -274,17 +274,5 @@
     "ingredients": "ddd",
     "allergens": "xxx",
     "nutrition": ""
-  },
-  {
-    "id": 24,
-    "name": "rosie",
-    "category": "SOS",
-    "categoryEmoji": "",
-    "description": "ddd",
-    "price": "10",
-    "image": "pisica.jpg",
-    "ingredients": "sss",
-    "allergens": "sssd",
-    "nutrition": ""
   }
 ]
