@@ -291,9 +291,43 @@
           };
         });
         console.log('Products loaded:', products.length);
+                  renderProducts(products);
       })
       .catch(err => console.error('Error loading products:', err)); 'EXTRA SOS BLUE CHEESE': {price: '6.00 LEI', desc: 'Sos blue cheese', ing: 'Blue Cheese, Smântână', nut: '170 Kcal/100g', alerg: 'Lapte'}
 };
+
+
+            // Function to render products dynamically
+    function renderProducts(products) {
+      const container = document.getElementById('products-grid');
+      if (!container) return;
+      
+      // Clear existing content
+      container.innerHTML = '';
+      
+      // Generate cards for each product
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card card-hover';
+        card.innerHTML = `
+          <div class="placeholder-img h-48 bg-cover bg-center rounded-t-2xl" style="background-image: url('${product.image}')"></div>
+          <div class="p-6">
+            <span class="text-xs bg-red-100 text-red-600 px-3 py-1 rounded-full">${product.categoryEmoji} ${product.category}</span>
+            <h3 class="text-2xl font-bold mt-3 mb-2">${product.name}</h3>
+            <p class="text-gray-600 text-sm mb-4">${product.description}</p>
+            <p class="text-3xl font-bold text-orange-500">${product.price} LEI</p>
+          </div>
+        `;
+        card.addEventListener('click', () => {
+          const title = card.querySelector('h3').textContent;
+          const details = productData[title];
+          if (details) {
+            showModal(title, details);
+          }
+        });
+        container.appendChild(card);
+      });
+    }
 
 document.getElementById('products-grid').addEventListener('click', (e) => {
     const card = e.target.closest('.product-card');
