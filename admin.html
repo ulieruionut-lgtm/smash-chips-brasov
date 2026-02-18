@@ -250,7 +250,7 @@
             try {
                 const response = await fetch('products.json');
                 const data = await response.json();
-                products = data.products;
+                products = (Array.isArray(data) ? data : (data.products || []));
                 displayProducts();
             } catch (error) {
                 console.error('Error loading products:', error);
