@@ -274,5 +274,17 @@
     "ingredients": "ddd",
     "allergens": "xxx",
     "nutrition": ""
+  },
+  {
+    "id": 24,
+    "name": "test",
+    "category": "Burgeri",
+    "categoryEmoji": "",
+    "description": "sfddew",
+    "price": "12",
+    "image": "pisica.jpg",
+    "ingredients": "ddd",
+    "allergens": "",
+    "nutrition": ""
   }
 ]
