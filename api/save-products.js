@@ -31,29 +31,32 @@ export default async function handler(req, res) {
                 return res.status(400).json({ error: 'Missing filename or imageData' });
             }
 
-            // imageData is base64 string (may include data:image/...;base64, prefix)
             const base64Image = imageData.includes(',') ? imageData.split(',')[1] : imageData;
+            const FILE_PATH = `images/${filename}`;
 
             // Check if file exists to get SHA
-            const getResp = await fetch(
-                `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${encodeURIComponent(filename)}`,
-                { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' } }
+            let imageSha = null;
+            const checkFile = await fetch(
+                `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
+                {
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`
+                    }
+                }
             );
 
-            let imageSha = null;
-            if (getResp.ok) {
-                const imgData = await getResp.json();
-                imageSha = imgData.sha;
+            if (checkFile.ok) {
+                const fileData = await checkFile.json();
+                imageSha = fileData.sha;
             }
 
             const uploadResp = await fetch(
-                `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${encodeURIComponent(filename)}`,
+                `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
                 {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `Bearer ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         message: `Upload image ${filename} via admin panel`,
@@ -69,14 +72,17 @@ export default async function handler(req, res) {
                 return res.status(500).json({ error: 'Failed to upload image', details: err.message });
             }
 
-            return res.status(200).json({ success: true, message: `Image ${filename} uploaded successfully` });
+            return res.status(200).json({
+                success: true,
+                message: `Image ${filename} uploaded successfully`
+            });
         }
 
-        // Handle products save
-        const { products } = body;
+        // Handle products save - support both { products: [] } and []
+        const products = Array.isArray(body) ? body : (body.products && Array.isArray(body.products) ? body.products : null);
 
-        if (!products || !Array.isArray(products)) {
-            return res.status(400).json({ error: 'Invalid products data' });
+        if (!products) {
+            return res.status(400).json({ error: 'Invalid products data. Expected array or object with products key.' });
         }
 
         const FILE_PATH = 'products.json';
@@ -86,57 +92,45 @@ export default async function handler(req, res) {
             `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
             {
                 headers: {
-                    'Authorization': `Bearer ${GITHUB_TOKEN}`,
-                    'Accept': 'application/vnd.github.v3+json'
+                    'Authorization': `token ${GITHUB_TOKEN}`
                 }
             }
         );
 
-        let sha = null;
-        if (getFileResponse.ok) {
-            const fileData = await getFileResponse.json();
-            sha = fileData.sha;
+        if (!getFileResponse.ok) {
+            return res.status(500).json({ error: 'Failed to get products.json SHA' });
         }
 
-        // Wrap products in correct format {"products": [...]}
-        const fileContent = { products };
-        const content = JSON.stringify(fileContent, null, 2);
-        const base64Content = Buffer.from(content).toString('base64');
+        const fileData = await getFileResponse.json();
+        const fileSha = fileData.sha;
 
+        // Update file - ALWAYS SAVE AS ROOT ARRAY
         const updateResponse = await fetch(
             `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
             {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${GITHUB_TOKEN}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
+                    'Authorization': `token ${GITHUB_TOKEN}`,
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     message: `Update products.json via admin panel - ${new Date().toISOString()}`,
-                    content: base64Content,
-                    ...(sha && { sha }),
+                    content: Buffer.from(JSON.stringify(products, null, 4)).toString('base64'),
+                    sha: fileSha,
                     branch: 'main'
                 })
             }
         );
 
         if (!updateResponse.ok) {
-            const errorData = await updateResponse.json();
-            console.error('GitHub API Error:', errorData);
-            return res.status(500).json({ error: 'Failed to update GitHub', details: errorData.message });
+            const err = await updateResponse.json();
+            return res.status(500).json({ error: 'Failed to update products.json', details: err.message });
         }
 
-        const result = await updateResponse.json();
-        return res.status(200).json({
-            success: true,
-            message: 'Products saved successfully to GitHub',
-            commit: result.commit.sha,
-            url: result.content.html_url
-        });
+        return res.status(200).json({ success: true });
 
     } catch (error) {
-        console.error('Server error:', error);
+        console.error('API Error:', error);
         return res.status(500).json({ error: 'Internal server error', details: error.message });
     }
 }
