@@ -250,5 +250,17 @@
         "ingredients": "Blue Cheese, Smântână",
         "nutrition": "170 Kcal/100g",
         "allergens": "Lapte"
+    },
+    {
+        "id": 23,
+        "name": "Dovlec",
+        "category": "BURGER",
+        "categoryEmoji": "",
+        "description": "",
+        "price": "15.00",
+        "image": "",
+        "ingredients": "",
+        "allergens": "",
+        "nutrition": ""
     }
 ]
