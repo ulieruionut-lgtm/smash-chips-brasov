@@ -90,11 +90,12 @@
                     <div style="display: flex; gap: 10px; align-items: center;">
                         <input type="text" id="productImage" placeholder="nume-fisier.png" readonly>
                         <input type="file" id="productImageFile" accept="image/*" style="display:none">
-                        <button type="button" onclick="document.getElementById('productImageFile').click()" class="btn-secondary" style="margin:0">📷 Alege Imagine</button>
+                        <button type="button" onclick="document.getElementById('productImageFile').click()" class="btn-secondary">📷 Alege Imagine</button>
                     </div>
                     <div id="imagePreview" class="image-preview">
-                        <p style="margin-bottom:5px; font-size:12px; color:#666">Preview: <span id="imageName"></span></p>
+                        <p>Preview:</p>
                         <img id="previewImg" src="" alt="Preview">
+                        <p id="imageName" style="font-size: 12px; color: #666;"></p>
                     </div>
                 </div>
 
@@ -103,15 +104,14 @@
                     <input type="text" id="productIngredients" placeholder="Carne vită, Sos, Cheddar...">
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>Alergeni:</label>
-                        <input type="text" id="productAllergens" placeholder="Gluten, Ouă, Lapte">
-                    </div>
-                    <div class="form-group">
-                        <label>Valori Nutriționale:</label>
-                        <input type="text" id="productNutrition" placeholder="270 Kcal/100g">
-                    </div>
+                <div class="form-group">
+                    <label>Alergeni:</label>
+                    <input type="text" id="productAllergens" placeholder="Gluten, Ouă, Lapte">
+                </div>
+
+                <div class="form-group">
+                    <label>Valori Nutriționale:</label>
+                    <input type="text" id="productNutrition" placeholder="270 Kcal/100g">
                 </div>
 
                 <button type="submit">💾 Salvează</button>
@@ -119,10 +119,8 @@
             </form>
         </div>
 
-        <div class="list-section">
-            <h2>📦 Lista Produse</h2>
-            <div id="productsList"></div>
-        </div>
+        <h2>📦 Lista Produse</h2>
+        <div id="productsList"></div>
     </div>
 
     <script>
@@ -149,7 +147,9 @@
 
         async function loadProducts() {
             try {
-                const response = await fetch('products.json?v=' + Date.now());
+                // Modificat pentru a citi direct de pe GitHub (evită cache/delay Vercel)
+                const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json';
+                const response = await fetch(GITHUB_RAW_URL + '?v=' + Date.now());
                 const data = await response.json();
                 products = Array.isArray(data) ? data : (data.products || []);
                 displayProducts();
@@ -246,7 +246,8 @@
                 if (resp.ok && result.success) {
                     showSuccess('✅ Succes! Modificările au fost trimise pe GitHub.');
                     resetForm();
-                    await loadProducts();
+                    // Adăugăm un mic delay pentru a ne asigura că GitHub a procesat commit-ul
+                    setTimeout(() => loadProducts(), 2000);
                 } else {
                     throw new Error(result.error || 'Failed to save');
                 }
