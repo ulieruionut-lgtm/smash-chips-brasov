@@ -20,8 +20,8 @@
         "price": "48.00",
         "image": "Classic double smashed.png",
         "ingredients": "2x Carne vită 90g, 2x Cheddar, Sos, Salată, Chiflă",
-        "allergens": "Gluten, Ouă, Lapte",
-        "nutrition": "280 Kcal/100g"
+        "nutrition": "280 Kcal/100g",
+        "allergens": "Gluten, Ouă, Lapte"
     },
     {
         "id": 3,
@@ -32,8 +32,8 @@
         "price": "38.00",
         "image": "Iute-n gura.png",
         "ingredients": "Carne vită, Jalapeño, Sos picant, Cheddar",
-        "nutrition": "275 Kcal/100g",
-        "allergens": "Gluten, Ouă, Lapte"
+        "allergens": "Gluten, Ouă, Lapte",
+        "nutrition": "275 Kcal/100g"
     },
     {
         "id": 4,
