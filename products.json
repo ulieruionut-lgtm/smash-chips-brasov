@@ -54,10 +54,10 @@
         "categoryEmoji": "🥓",
         "description": "Dublu burger cu bacon și BBQ",
         "price": "52.00",
-        "image": "BBQ BACON DOUBLE SMASHED.png",
+        "image": "",
         "ingredients": "2x Carne vită, 2x Bacon, Sos BBQ, Cheddar",
-        "allergens": "Gluten, Lapte",
-        "nutrition": "300 Kcal/100g"
+        "nutrition": "300 Kcal/100g",
+        "allergens": "Gluten, Lapte"
     },
     {
         "id": 6,
@@ -78,10 +78,10 @@
         "categoryEmoji": "🍄",
         "description": "Dublu burger cu ciuperci și sos blue cheese",
         "price": "51.00",
-        "image": "",
+        "image": "DOUBLE CHAMPIGNON BLUES.png",
         "ingredients": "2x Carne vită, Ciuperci, Blue Cheese, Chiflă",
-        "nutrition": "295 Kcal/100g",
-        "allergens": "Gluten, Lapte"
+        "allergens": "Gluten, Lapte",
+        "nutrition": "295 Kcal/100g"
     },
     {
         "id": 8,
