@@ -234,10 +234,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos picant cu miere",
         "price": "7.00",
-        "image": "EXTRA SOS SRIRACHA HONEY.png",
+        "image": "",
         "ingredients": "Sriracha, Miere",
-        "allergens": "-",
-        "nutrition": "130 Kcal/100g"
+        "nutrition": "130 Kcal/100g",
+        "allergens": "-"
     },
     {
         "id": 22,
@@ -246,9 +246,9 @@
         "categoryEmoji": "🧉",
         "description": "Sos blue cheese",
         "price": "6.00",
-        "image": "",
+        "image": "EXTRA SOS BLUE CHEESE.png",
         "ingredients": "Blue Cheese, Smântână",
-        "nutrition": "170 Kcal/100g",
-        "allergens": "Lapte"
+        "allergens": "Lapte",
+        "nutrition": "170 Kcal/100g"
     }
 ]
