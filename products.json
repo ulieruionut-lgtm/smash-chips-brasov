@@ -66,10 +66,10 @@
         "categoryEmoji": "🌶️",
         "description": "Dublu burger picant",
         "price": "48.00",
-        "image": "",
+        "image": "DOUBLE IUTE-N GURA.png",
         "ingredients": "2x Carne vită, Jalapeño, Sos picant, Cheddar",
-        "nutrition": "285 Kcal/100g",
-        "allergens": "Gluten, Ouă, Lapte"
+        "allergens": "Gluten, Ouă, Lapte",
+        "nutrition": "285 Kcal/100g"
     },
     {
         "id": 7,
