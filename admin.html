@@ -18,6 +18,7 @@
         button:hover { transform: translateY(-2px); }
         .btn-secondary { background: #6c757d; margin-left: 10px; }
         .btn-danger { background: #dc3545; }
+        .btn-sm { padding: 8px 15px; font-size: 12px; }
         .hidden { display: none; }
         .product-item { background: #f8f9fa; padding: 15px; margin-bottom: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
         .product-info h3 { color: #333; margin-bottom: 5px; }
@@ -26,6 +27,14 @@
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .form-section { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #eee; }
         .success-msg { background: #28a745; color: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; display: none; text-align: center; }
+        
+        /* Gallery Styles */
+        .gallery-section { margin-top: 30px; border-top: 2px solid #eee; pt: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
+        .gallery-item { background: white; padding: 10px; border-radius: 8px; border: 1px solid #ddd; position: relative; }
+        .gallery-item img { w-full; height: 100px; object-fit: cover; border-radius: 4px; cursor: pointer; }
+        .gallery-item .img-name { font-size: 10px; color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 5px; }
+        .gallery-item .delete-img { position: absolute; top: 5px; right: 5px; background: rgba(220, 53, 69, 0.8); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; cursor: pointer; display: flex; items-center; justify-center; }
         .image-preview { margin-top: 10px; display: none; }
         .image-preview img { max-height: 150px; border-radius: 8px; border: 2px solid #ddd; }
     </style>
@@ -87,15 +96,25 @@
 
                 <div class="form-group">
                     <label>Imagine:</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="text" id="productImage" placeholder="nume-fisier.png" readonly>
-                        <input type="file" id="productImageFile" accept="image/*" style="display:none">
-                        <button type="button" onclick="document.getElementById('productImageFile').click()" class="btn-secondary">📷 Alege Imagine</button>
+                        <button type="button" onclick="document.getElementById('productImageFile').click()" class="btn-secondary btn-sm">📷 Încarcă Nouă</button>
                     </div>
+                    <input type="file" id="productImageFile" accept="image/*" style="display:none">
+                    
                     <div id="imagePreview" class="image-preview">
-                        <p>Preview:</p>
-                        <img id="previewImg" src="" alt="Preview">
-                        <p id="imageName" style="font-size: 12px; color: #666;"></p>
+                        <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Preview:</p>
+                        <img id="previewImg" src="">
+                    </div>
+
+                    <div class="gallery-section">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <label>Poze disponibile (Apasă pe o poză pentru a o selecta):</label>
+                            <button type="button" onclick="loadImages()" class="btn-secondary btn-sm" style="padding: 4px 10px;">🔄 Refresh</button>
+                        </div>
+                        <div id="imagesGallery" class="gallery-grid">
+                            <p style="font-size: 14px; color: #888;">Se încarcă galeria...</p>
+                        </div>
                     </div>
                 </div>
 
@@ -104,14 +123,15 @@
                     <input type="text" id="productIngredients" placeholder="Carne vită, Sos, Cheddar...">
                 </div>
 
-                <div class="form-group">
-                    <label>Alergeni:</label>
-                    <input type="text" id="productAllergens" placeholder="Gluten, Ouă, Lapte">
-                </div>
-
-                <div class="form-group">
-                    <label>Valori Nutriționale:</label>
-                    <input type="text" id="productNutrition" placeholder="270 Kcal/100g">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Alergeni:</label>
+                        <input type="text" id="productAllergens" placeholder="Gluten, Ouă, Lapte">
+                    </div>
+                    <div class="form-group">
+                        <label>Valori Nutriționale:</label>
+                        <input type="text" id="productNutrition" placeholder="270 Kcal/100g">
+                    </div>
                 </div>
 
                 <button type="submit">💾 Salvează</button>
@@ -119,13 +139,16 @@
             </form>
         </div>
 
-        <h2>📦 Lista Produse</h2>
-        <div id="productsList"></div>
+        <div class="list-section">
+            <h2>📦 Lista Produse</h2>
+            <div id="productsList"></div>
+        </div>
     </div>
 
     <script>
         const PASSWORD = "Pasaj2012";
         let products = [];
+        let images = [];
         let editingId = null;
         let pendingImageData = null;
 
@@ -134,6 +157,7 @@
                 document.getElementById('loginContainer').classList.add('hidden');
                 document.getElementById('adminContainer').classList.remove('hidden');
                 loadProducts();
+                loadImages();
             } else {
                 alert('Parolă incorectă!');
             }
@@ -147,7 +171,6 @@
 
         async function loadProducts() {
             try {
-                // Modificat pentru a citi direct de pe GitHub (evită cache/delay Vercel)
                 const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json';
                 const response = await fetch(GITHUB_RAW_URL + '?v=' + Date.now());
                 const data = await response.json();
@@ -155,6 +178,68 @@
                 displayProducts();
             } catch (error) {
                 console.error('Error loading products:', error);
+            }
+        }
+
+        async function loadImages() {
+            try {
+                const resp = await fetch('/api/save-products');
+                const data = await resp.json();
+                images = data.images || [];
+                displayGallery();
+            } catch (err) {
+                console.error('Error loading images:', err);
+                document.getElementById('imagesGallery').innerHTML = '<p style="color:red">Eroare la încărcarea galeriei.</p>';
+            }
+        }
+
+        function displayGallery() {
+            const gallery = document.getElementById('imagesGallery');
+            gallery.innerHTML = '';
+            
+            if (images.length === 0) {
+                gallery.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Nicio imagine găsită în folderul images.</p>';
+                return;
+            }
+
+            images.forEach(img => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `
+                    <button type="button" class="delete-img" onclick="deleteImage('${img.name}')" title="Șterge imaginea de pe GitHub">×</button>
+                    <img src="${img.url}" onclick="selectImage('${img.name}')" title="Apasă pentru a selecta">
+                    <div class="img-name">${img.name}</div>
+                `;
+                gallery.appendChild(div);
+            });
+        }
+
+        function selectImage(name) {
+            document.getElementById('productImage').value = name;
+            document.getElementById('previewImg').src = 'images/' + name;
+            document.getElementById('imagePreview').style.display = 'block';
+            pendingImageData = null;
+        }
+
+        async function deleteImage(name) {
+            if (!confirm(`Sigur vrei să ștergi imaginea "${name}"? Aceasta va fi ștearsă definitiv de pe GitHub.`)) return;
+            
+            try {
+                showSuccess('Deleting image...');
+                const resp = await fetch('/api/save-products', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'delete-image', filename: name })
+                });
+                if (resp.ok) {
+                    showSuccess('Imagine ștearsă cu succes.');
+                    loadImages();
+                } else {
+                    const err = await resp.json();
+                    alert('Eroare la ștergere: ' + (err.details || err.error));
+                }
+            } catch (err) {
+                alert('Error: ' + err.message);
             }
         }
 
@@ -185,7 +270,6 @@
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     document.getElementById('previewImg').src = event.target.result;
-                    document.getElementById('imageName').textContent = file.name;
                     document.getElementById('imagePreview').style.display = 'block';
                     document.getElementById('productImage').value = file.name;
                     pendingImageData = event.target.result;
@@ -226,11 +310,7 @@
                     const imgResp = await fetch('/api/save-products', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            action: 'upload-image',
-                            filename,
-                            imageData
-                        })
+                        body: JSON.stringify({ action: 'upload-image', filename, imageData })
                     });
                     if (!imgResp.ok) throw new Error('Failed to upload image');
                 }
@@ -241,13 +321,15 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ products: updatedProducts })
                 });
-
+                
                 const result = await resp.json();
                 if (resp.ok && result.success) {
                     showSuccess('✅ Succes! Modificările au fost trimise pe GitHub.');
                     resetForm();
-                    // Adăugăm un mic delay pentru a ne asigura că GitHub a procesat commit-ul
-                    setTimeout(() => loadProducts(), 2000);
+                    setTimeout(() => {
+                        loadProducts();
+                        loadImages();
+                    }, 2000);
                 } else {
                     throw new Error(result.error || 'Failed to save');
                 }
@@ -270,7 +352,14 @@
                 document.getElementById('productIngredients').value = p.ingredients || '';
                 document.getElementById('productAllergens').value = p.allergens || '';
                 document.getElementById('productNutrition').value = p.nutrition || '';
-                document.getElementById('imagePreview').style.display = 'none';
+                
+                if (p.image) {
+                    document.getElementById('previewImg').src = 'images/' + p.image;
+                    document.getElementById('imagePreview').style.display = 'block';
+                } else {
+                    document.getElementById('imagePreview').style.display = 'none';
+                }
+                
                 pendingImageData = null;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
