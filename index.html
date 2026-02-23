@@ -59,25 +59,39 @@
     <script>
         let productData = {};
 
+        // Ordinea fixă a categoriilor - BURGER apare primul
+        const CATEGORY_ORDER = ['BURGER', 'CARTOFI', 'KEBAB PUI', 'BĂUTURI', 'SOS'];
+
         async function loadProducts() {
             try {
                 const response = await fetch(`products.json?v=${Date.now()}`);
                 const products = await response.json();
-                
+
                 // Support both root array and products key
                 const productList = Array.isArray(products) ? products : (products.products || []);
-                
+
                 productList.forEach(p => {
                     productData[p.name] = {
                         price: p.price + ' LEI',
                         desc: p.description || '',
                         ing: p.ingredients || '',
                         alerg: p.allergens || '',
-                        nut: p.nutrition || ''
+                        nut: p.nutrition || '',
+                        img: p.image || ''
                     };
                 });
 
-                renderProducts(productList);
+                // Sortează produsele după ordinea fixă a categoriilor
+                const sorted = [...productList].sort((a, b) => {
+                    const ia = CATEGORY_ORDER.indexOf(a.category);
+                    const ib = CATEGORY_ORDER.indexOf(b.category);
+                    const orderA = ia === -1 ? 999 : ia;
+                    const orderB = ib === -1 ? 999 : ib;
+                    if (orderA !== orderB) return orderA - orderB;
+                    return (a.id || 0) - (b.id || 0);
+                });
+
+                renderProducts(sorted);
             } catch (err) {
                 console.error('Error loading products:', err);
                 const container = document.getElementById('products-grid');
@@ -89,15 +103,21 @@
             const container = document.getElementById('products-grid');
             if (!container) return;
             container.innerHTML = '';
-
             products.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'product-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden';
-                
-                const imgSrc = product.image ? `images/${product.image}` : '';
-                const displayImg = product.image ? 
-                    `<div class="h-48 bg-cover bg-center" style="background-image: url('${imgSrc}')"></div>` :
-                    `<div class="placeholder-img h-48 flex items-center justify-center text-6xl">${product.categoryEmoji || '🍔'}</div>`;
+
+                let displayImg;
+                if (product.image) {
+                    // Folosim <img> cu fallback la emoji dacă poza nu există
+                    displayImg = `<div class="h-48 overflow-hidden relative">
+                        <img src="images/${product.image}" alt="${product.name}"
+                             class="w-full h-full object-cover"
+                             onerror="this.parentElement.innerHTML='<div class=\\'placeholder-img h-48 flex items-center justify-center text-6xl\\'>${product.categoryEmoji || '🍔'}</div>'; this.parentElement.classList.remove('h-48','overflow-hidden','relative');">
+                    </div>`;
+                } else {
+                    displayImg = `<div class="placeholder-img h-48 flex items-center justify-center text-6xl">${product.categoryEmoji || '🍔'}</div>`;
+                }
 
                 card.innerHTML = `
                     ${displayImg}
@@ -108,7 +128,7 @@
                         <p class="text-3xl font-bold text-orange-500">${product.price} LEI</p>
                     </div>
                 `;
-                
+
                 card.onclick = () => showModal(product.name, productData[product.name]);
                 container.appendChild(card);
             });
@@ -118,6 +138,13 @@
             if (!p) return;
             const m = document.createElement('div');
             m.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+
+            let imgHtml = '';
+            if (p.img) {
+                imgHtml = `<img src="images/${p.img}" alt="${name}" class="w-full h-48 object-cover rounded-xl mb-4"
+                    onerror="this.style.display='none'">`;
+            }
+
             m.innerHTML = `
                 <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
                     <div class="sticky top-0 bg-orange-500 text-white p-6 flex justify-between items-center">
@@ -125,6 +152,7 @@
                         <button onclick="this.closest('.fixed').remove()" class="text-3xl">×</button>
                     </div>
                     <div class="p-6 space-y-4">
+                        ${imgHtml}
                         <p class="text-3xl font-bold text-orange-500">${p.price}</p>
                         <div><h3 class="font-bold">📝 Descriere</h3><p>${p.desc}</p></div>
                         <div><h3 class="font-bold">🥘 Ingrediente</h3><p>${p.ing}</p></div>
