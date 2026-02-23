@@ -255,7 +255,7 @@
         "id": 23,
         "name": "Dovlec",
         "category": "BURGER",
-        "categoryEmoji": "",
+                "categoryEmoji": "🍔",
         "description": "",
         "price": "15.00",
         "image": "Sigla.jpg",
