@@ -114,10 +114,10 @@
         "categoryEmoji": "🍟",
         "description": "Cartofi aromați cu parmezan",
         "price": "17.00",
-        "image": "Cartofi cu usturoi, pătrunjel și parmezan.png",
+        "image": "CARTOFI CU USTUROI, PĂTRUNJEL ȘI PARMEZAN.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel, Parmezan",
-        "nutrition": "330 Kcal/100g",
-        "allergens": "Lapte"
+        "allergens": "Lapte",
+        "nutrition": "330 Kcal/100g"
     },
     {
         "id": 12,
@@ -126,10 +126,10 @@
         "categoryEmoji": "🍟",
         "description": "Cartofi cu usturoi proaspăt",
         "price": "15.00",
-        "image": "CARTOFI PRĂJIȚI CU USTUROI ȘI PĂTRUNJEL VERDE.png",
+        "image": "Cartofi prăjiți cu usturoi și pătrunjel verde.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel",
-        "allergens": "-",
-        "nutrition": "320 Kcal/100g"
+        "nutrition": "320 Kcal/100g",
+        "allergens": "-"
     },
     {
         "id": 13,
