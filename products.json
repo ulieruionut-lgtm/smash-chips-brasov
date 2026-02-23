@@ -42,10 +42,10 @@
         "categoryEmoji": "🥓",
         "description": "Burger cu bacon crocant și sos BBQ",
         "price": "41.00",
-        "image": "BBQ BACON.png",
+        "image": "",
         "ingredients": "Carne vită, Bacon, Sos BBQ, Cheddar",
-        "allergens": "Gluten, Lapte",
-        "nutrition": "290 Kcal/100g"
+        "nutrition": "290 Kcal/100g",
+        "allergens": "Gluten, Lapte"
     },
     {
         "id": 5,
@@ -54,10 +54,10 @@
         "categoryEmoji": "🥓",
         "description": "Dublu burger cu bacon și BBQ",
         "price": "52.00",
-        "image": "",
+        "image": "BBQ BACON DOUBLE SMASHED.png",
         "ingredients": "2x Carne vită, 2x Bacon, Sos BBQ, Cheddar",
-        "nutrition": "300 Kcal/100g",
-        "allergens": "Gluten, Lapte"
+        "allergens": "Gluten, Lapte",
+        "nutrition": "300 Kcal/100g"
     },
     {
         "id": 6,
