@@ -78,10 +78,10 @@
         "categoryEmoji": "🍄",
         "description": "Dublu burger cu ciuperci și sos blue cheese",
         "price": "51.00",
-        "image": "DOUBLE CHAMPIGNON BLUES.png",
+        "image": "",
         "ingredients": "2x Carne vită, Ciuperci, Blue Cheese, Chiflă",
-        "allergens": "Gluten, Lapte",
-        "nutrition": "295 Kcal/100g"
+        "nutrition": "295 Kcal/100g",
+        "allergens": "Gluten, Lapte"
     },
     {
         "id": 8,
@@ -90,10 +90,10 @@
         "categoryEmoji": "🍄",
         "description": "Burger cu ciuperci și blue cheese",
         "price": "40.00",
-        "image": "",
+        "image": "CHAMPIGNON BLUES.png",
         "ingredients": "Carne vită, Ciuperci, Blue Cheese, Chiflă",
-        "nutrition": "280 Kcal/100g",
-        "allergens": "Gluten, Lapte"
+        "allergens": "Gluten, Lapte",
+        "nutrition": "280 Kcal/100g"
     },
     {
         "id": 10,
