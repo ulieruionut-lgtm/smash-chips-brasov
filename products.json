@@ -8,8 +8,8 @@
         "price": "38.00",
         "image": "Classic smashed.png",
         "ingredients": "Carne vită 90g, Sos, Cheddar, Salată, Castraveți, Chiflă",
-        "nutrition": "270 Kcal/100g",
-        "allergens": "Gluten, Ouă, Lapte"
+        "allergens": "Gluten, Ouă, Lapte",
+        "nutrition": "270 Kcal/100g"
     },
     {
         "id": 2,
