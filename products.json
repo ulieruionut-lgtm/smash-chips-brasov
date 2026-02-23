@@ -66,10 +66,10 @@
         "categoryEmoji": "🌶️",
         "description": "Dublu burger picant",
         "price": "48.00",
-        "image": "DOUBLE IUTE-N GURA.png",
+        "image": "",
         "ingredients": "2x Carne vită, Jalapeño, Sos picant, Cheddar",
-        "allergens": "Gluten, Ouă, Lapte",
-        "nutrition": "285 Kcal/100g"
+        "nutrition": "285 Kcal/100g",
+        "allergens": "Gluten, Ouă, Lapte"
     },
     {
         "id": 7,
@@ -78,10 +78,10 @@
         "categoryEmoji": "🍄",
         "description": "Dublu burger cu ciuperci și sos blue cheese",
         "price": "51.00",
-        "image": "",
+        "image": "DOUBLE CHAMPIGNON BLUES.png",
         "ingredients": "2x Carne vită, Ciuperci, Blue Cheese, Chiflă",
-        "nutrition": "295 Kcal/100g",
-        "allergens": "Gluten, Lapte"
+        "allergens": "Gluten, Lapte",
+        "nutrition": "295 Kcal/100g"
     },
     {
         "id": 8,
