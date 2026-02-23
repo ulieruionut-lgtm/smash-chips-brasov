@@ -90,10 +90,10 @@
         "categoryEmoji": "🍄",
         "description": "Burger cu ciuperci și blue cheese",
         "price": "40.00",
-        "image": "CHAMPIGNON BLUES.png",
+        "image": "",
         "ingredients": "Carne vită, Ciuperci, Blue Cheese, Chiflă",
-        "allergens": "Gluten, Lapte",
-        "nutrition": "280 Kcal/100g"
+        "nutrition": "280 Kcal/100g",
+        "allergens": "Gluten, Lapte"
     },
     {
         "id": 10,
@@ -102,10 +102,10 @@
         "categoryEmoji": "🍟",
         "description": "Cartofi deluxe cu toate condimentele",
         "price": "19.50",
-        "image": "Cartofi cu usturoi, pătrunjel, parmezan și bacon.png",
+        "image": "CARTOFI CU USTUROI, PĂTRUNJEL ȘI PARMEZAN.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel, Parmezan, Bacon",
-        "nutrition": "350 Kcal/100g",
-        "allergens": "Lapte"
+        "allergens": "Lapte",
+        "nutrition": "350 Kcal/100g"
     },
     {
         "id": 11,
