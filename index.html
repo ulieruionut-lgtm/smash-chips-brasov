@@ -14,21 +14,25 @@
     </style>
 </head>
 <body class="bg-gray-50">
+
     <!-- Hero Section -->
     <section class="gradient-bg text-white py-16">
         <div class="container mx-auto px-4 text-center">
             <img src="Sigla.jpg" alt="SMASHED & CRISP Logo" class="w-64 h-64 mx-auto mb-6 object-contain">
             <h2 class="text-5xl font-bold mb-4">Burgeri Smash Premium</h2>
             <p class="text-xl mb-8">Cei mai buni burgeri din Brașov! Meniu complet - Comandă acum pe Bolt Food</p>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <a href="https://glovoapp.com/ro/ro/brasov/stores/smashed-crispy-brv" target="_blank" class="bg-white/20 backdrop-blur p-6 rounded-2xl transition-all hover:bg-white/30 hover:scale-105 flex flex-col items-center justify-center">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Glovo_logo.svg" alt="Glovo" class="h-12 mb-3 object-contain brightness-0 invert">
                     <p class="font-semibold text-white text-sm">Comandă pe Glovo</p>
                 </a>
+                
                 <a href="https://wolt.com/ro/rou/brasov/restaurant/smashedcrisp-685abac5752f1507609a2a33" target="_blank" class="bg-white/20 backdrop-blur p-6 rounded-2xl transition-all hover:bg-white/30 hover:scale-105 flex flex-col items-center justify-center text-center">
                     <div class="text-5xl font-black text-white mb-3" style="font-family: Arial, sans-serif; letter-spacing: -1px;">wolt</div>
                     <p class="font-semibold text-white text-sm">Comandă pe Wolt</p>
                 </a>
+
                 <a href="https://food.bolt.eu/ro-ro/802-brasov/p/151373-smash-crisp/" target="_blank" class="bg-white/20 backdrop-blur p-6 rounded-2xl transition-all hover:bg-white/30 hover:scale-105 flex flex-col items-center justify-center">
                     <div class="text-4xl font-bold text-white mb-3">Bolt <span class="text-green-400">Food</span></div>
                     <p class="font-semibold text-white text-sm">Comandă pe Bolt Food</p>
@@ -58,18 +62,17 @@
 
     <script>
         let productData = {};
-
         // Ordinea fixă a categoriilor - BURGER apare primul
         const CATEGORY_ORDER = ['BURGER', 'CARTOFI', 'KEBAB PUI', 'BĂUTURI', 'SOS'];
 
         async function loadProducts() {
             try {
-                            const response = await fetch(`https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json?v=${Date.now()}`);
+                // Fetch direct from raw to avoid Vercel edge caching
+                const response = await fetch(`https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json?v=${Date.now()}`);
                 const products = await response.json();
-
-                // Support both root array and products key
+                
                 const productList = Array.isArray(products) ? products : (products.products || []);
-
+                
                 productList.forEach(p => {
                     productData[p.name] = {
                         price: p.price + ' LEI',
@@ -87,6 +90,7 @@
                     const ib = CATEGORY_ORDER.indexOf(b.category);
                     const orderA = ia === -1 ? 999 : ia;
                     const orderB = ib === -1 ? 999 : ib;
+                    
                     if (orderA !== orderB) return orderA - orderB;
                     return (a.id || 0) - (b.id || 0);
                 });
@@ -95,7 +99,7 @@
             } catch (err) {
                 console.error('Error loading products:', err);
                 const container = document.getElementById('products-grid');
-                if (container) container.innerHTML = '<div class="col-span-full text-center text-red-500">Eroare la încărcarea produselor.</div>';
+                if (container) container.innerHTML = '<div class="col-span-full text-center text-red-500">Eroare la încărcarea produselor. Reîncărcați pagina.</div>';
             }
         }
 
@@ -103,15 +107,17 @@
             const container = document.getElementById('products-grid');
             if (!container) return;
             container.innerHTML = '';
+
             products.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'product-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden';
-
+                
                 let displayImg;
                 if (product.image) {
-                    // Folosim <img> cu fallback la emoji dacă poza nu există
-                    displayImg = `<div class="h-48 overflow-hidden relative">
-                        <img src="images/${product.image}" alt="${product.name}"
+                    // ENCODE URL components for special characters like spaces
+                    const encodedImg = encodeURIComponent(product.image);
+                    displayImg = `<div class="h-48 overflow-hidden relative bg-gray-100">
+                        <img src="images/${encodedImg}" alt="${product.name}" 
                              class="w-full h-full object-cover"
                              onerror="this.parentElement.innerHTML='<div class=\\'placeholder-img h-48 flex items-center justify-center text-6xl\\'>${product.categoryEmoji || '🍔'}</div>'; this.parentElement.classList.remove('h-48','overflow-hidden','relative');">
                     </div>`;
@@ -122,13 +128,12 @@
                 card.innerHTML = `
                     ${displayImg}
                     <div class="p-6">
-                        <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">${product.categoryEmoji || ''} ${product.category}</span>
+                        <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full uppercase font-bold">${product.categoryEmoji || ''} ${product.category}</span>
                         <h3 class="text-2xl font-bold mt-3 mb-2">${product.name}</h3>
-                        <p class="text-gray-600 text-sm mb-4">${product.description || ''}</p>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">${product.description || 'Gust premium de la Smash & Chips.'}</p>
                         <p class="text-3xl font-bold text-orange-500">${product.price} LEI</p>
                     </div>
                 `;
-
                 card.onclick = () => showModal(product.name, productData[product.name]);
                 container.appendChild(card);
             });
@@ -137,30 +142,48 @@
         function showModal(name, p) {
             if (!p) return;
             const m = document.createElement('div');
-            m.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-
+            m.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm';
+            
             let imgHtml = '';
             if (p.img) {
-                imgHtml = `<img src="images/${p.img}" alt="${name}" class="w-full h-48 object-cover rounded-xl mb-4"
-                    onerror="this.style.display='none'">`;
+                const encoded = encodeURIComponent(p.img);
+                imgHtml = `<img src="images/${encoded}" alt="${name}" class="w-full h-64 object-cover rounded-xl mb-4 shadow-md"
+                             onerror="this.style.display='none'">`;
             }
 
             m.innerHTML = `
-                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-                    <div class="sticky top-0 bg-orange-500 text-white p-6 flex justify-between items-center">
+                <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl scale-in transform transition-all">
+                    <div class="sticky top-0 bg-orange-500 text-white p-6 flex justify-between items-center z-10">
                         <h2 class="text-2xl font-bold">${name}</h2>
-                        <button onclick="this.closest('.fixed').remove()" class="text-3xl">×</button>
+                        <button onclick="this.closest('.fixed').remove()" class="text-3xl hover:rotate-90 transition-transform">×</button>
                     </div>
-                    <div class="p-6 space-y-4">
+                    <div class="p-8 space-y-6">
                         ${imgHtml}
-                        <p class="text-3xl font-bold text-orange-500">${p.price}</p>
-                        <div><h3 class="font-bold">📝 Descriere</h3><p>${p.desc}</p></div>
-                        <div><h3 class="font-bold">🥘 Ingrediente</h3><p>${p.ing}</p></div>
-                        <div><h3 class="font-bold">📊 Nutriție</h3><p>${p.nut}</p></div>
-                        <div><h3 class="font-bold">⚠️ Alergeni</h3><p>${p.alerg}</p></div>
-                        <button onclick="window.open('https://food.bolt.eu/','_blank')" class="w-full bg-orange-500 text-white py-3 rounded-full font-semibold hover:bg-orange-600">Comandă pe Bolt Food</button>
+                        <div class="flex justify-between items-center">
+                            <p class="text-4xl font-black text-orange-500">${p.price}</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-gray-50 p-4 rounded-2xl">
+                                <h3 class="font-bold text-gray-800 mb-2">📝 Descriere</h3>
+                                <p class="text-gray-600 text-sm">${p.desc || 'N/A'}</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-2xl">
+                                <h3 class="font-bold text-gray-800 mb-2">🥘 Ingrediente</h3>
+                                <p class="text-gray-600 text-sm">${p.ing || 'N/A'}</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-2xl">
+                                <h3 class="font-bold text-gray-800 mb-2">📊 Nutriție</h3>
+                                <p class="text-gray-600 text-sm">${p.nut || 'N/A'}</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-2xl">
+                                <h3 class="font-bold text-gray-800 mb-2">⚠️ Alergeni</h3>
+                                <p class="text-red-500 text-sm font-semibold">${p.alerg || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://food.bolt.eu/','_blank')" class="w-full bg-orange-500 text-white py-4 rounded-2xl font-bold text-xl hover:bg-orange-600 transition-colors shadow-lg hover:shadow-orange-200">Comandă acum pe Bolt Food</button>
                     </div>
                 </div>`;
+            
             m.onclick = (e) => e.target === m && m.remove();
             document.body.appendChild(m);
         }
