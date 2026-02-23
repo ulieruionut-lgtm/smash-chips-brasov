@@ -162,10 +162,10 @@
         "categoryEmoji": "🍺",
         "description": "Bere URSUS",
         "price": "10.00",
-        "image": "URSUS 0.33L.png",
+        "image": "",
         "ingredients": "Bere",
-        "allergens": "Gluten",
-        "nutrition": "43 Kcal/100ml"
+        "nutrition": "43 Kcal/100ml",
+        "allergens": "Gluten"
     },
     {
         "id": 16,
@@ -198,10 +198,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos de usturoi proaspăt",
         "price": "6.00",
-        "image": "",
+        "image": "SOS DE USTUROI.png",
         "ingredients": "Usturoi, Maioneză",
-        "nutrition": "150 Kcal/100g",
-        "allergens": "Ouă"
+        "allergens": "Ouă",
+        "nutrition": "150 Kcal/100g"
     },
     {
         "id": 19,
