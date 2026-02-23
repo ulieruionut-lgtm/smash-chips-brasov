@@ -116,8 +116,8 @@
         "price": "17.00",
         "image": "CARTOFI CU USTUROI, PĂTRUNJEL ȘI PARMEZAN.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel, Parmezan",
-        "allergens": "Lapte",
-        "nutrition": "330 Kcal/100g"
+        "nutrition": "330 Kcal/100g",
+        "allergens": "Lapte"
     },
     {
         "id": 12,
@@ -126,7 +126,7 @@
         "categoryEmoji": "🍟",
         "description": "Cartofi cu usturoi proaspăt",
         "price": "15.00",
-        "image": "Cartofi prăjiți cu usturoi și pătrunjel verde.png",
+        "image": "CARTOFI PRĂJIȚI CU USTUROI ȘI PĂTRUNJEL VERDE.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel",
         "nutrition": "320 Kcal/100g",
         "allergens": "-"
@@ -162,7 +162,7 @@
         "categoryEmoji": "🍺",
         "description": "Bere URSUS",
         "price": "10.00",
-        "image": "",
+        "image": "URSUS 0.33L.png",
         "ingredients": "Bere",
         "nutrition": "43 Kcal/100ml",
         "allergens": "Gluten"
@@ -176,8 +176,8 @@
         "price": "7.00",
         "image": "APA DORNA MIN 0.5L.png",
         "ingredients": "Apă minerală",
-        "allergens": "-",
-        "nutrition": "0 Kcal"
+        "nutrition": "0 Kcal",
+        "allergens": "-"
     },
     {
         "id": 17,
@@ -198,7 +198,7 @@
         "categoryEmoji": "🧉",
         "description": "Sos de usturoi proaspăt",
         "price": "6.00",
-        "image": "",
+        "image": "SOS DE USTUROI.png",
         "ingredients": "Usturoi, Maioneză",
         "nutrition": "150 Kcal/100g",
         "allergens": "Ouă"
@@ -210,7 +210,7 @@
         "categoryEmoji": "🧉",
         "description": "Sos special pentru burger",
         "price": "7.00",
-        "image": "",
+        "image": "EXTRA SOS BURGER.png",
         "ingredients": "Maioneză, Ketchup, Condimente",
         "nutrition": "160 Kcal/100g",
         "allergens": "Ouă"
@@ -222,7 +222,7 @@
         "categoryEmoji": "🧉",
         "description": "Sos BBQ picant",
         "price": "7.00",
-        "image": "",
+        "image": "EXTRA SOS BBQ CHIPOTLE.png",
         "ingredients": "BBQ, Chipotle",
         "nutrition": "140 Kcal/100g",
         "allergens": "-"
@@ -234,7 +234,7 @@
         "categoryEmoji": "🧉",
         "description": "Sos picant cu miere",
         "price": "7.00",
-        "image": "",
+        "image": "EXTRA SOS SRIRACHA HONEY.png",
         "ingredients": "Sriracha, Miere",
         "nutrition": "130 Kcal/100g",
         "allergens": "-"
@@ -248,7 +248,7 @@
         "price": "6.00",
         "image": "EXTRA SOS BLUE CHEESE.png",
         "ingredients": "Blue Cheese, Smântână",
-        "allergens": "Lapte",
-        "nutrition": "170 Kcal/100g"
+        "nutrition": "170 Kcal/100g",
+        "allergens": "Lapte"
     }
 ]
