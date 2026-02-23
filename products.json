@@ -126,10 +126,10 @@
         "categoryEmoji": "🍟",
         "description": "Cartofi cu usturoi proaspăt",
         "price": "15.00",
-        "image": "Cartofi prăjiți cu usturoi și pătrunjel verde.png",
+        "image": "CARTOFI PRĂJIȚI CU USTUROI ȘI PĂTRUNJEL VERDE.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel",
-        "nutrition": "320 Kcal/100g",
-        "allergens": "-"
+        "allergens": "-",
+        "nutrition": "320 Kcal/100g"
     },
     {
         "id": 13,
