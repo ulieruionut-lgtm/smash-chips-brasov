@@ -222,10 +222,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos BBQ picant",
         "price": "7.00",
-        "image": "EXTRA SOS BBQ CHIPOTLE.png",
+        "image": "",
         "ingredients": "BBQ, Chipotle",
-        "allergens": "-",
-        "nutrition": "140 Kcal/100g"
+        "nutrition": "140 Kcal/100g",
+        "allergens": "-"
     },
     {
         "id": 21,
@@ -234,10 +234,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos picant cu miere",
         "price": "7.00",
-        "image": "",
+        "image": "EXTRA SOS SRIRACHA HONEY.png",
         "ingredients": "Sriracha, Miere",
-        "nutrition": "130 Kcal/100g",
-        "allergens": "-"
+        "allergens": "-",
+        "nutrition": "130 Kcal/100g"
     },
     {
         "id": 22,
