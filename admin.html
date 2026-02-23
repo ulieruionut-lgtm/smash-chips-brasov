@@ -20,372 +20,394 @@
         .btn-danger { background: #dc3545; }
         .btn-sm { padding: 8px 15px; font-size: 12px; }
         .hidden { display: none; }
-        .product-item { background: #f8f9fa; padding: 15px; margin-bottom: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
-        .product-info h3 { color: #333; margin-bottom: 5px; }
-        .product-info p { color: #666; font-size: 14px; }
-        .product-actions { display: flex; gap: 10px; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .form-section { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #eee; }
-        .success-msg { background: #28a745; color: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; display: none; text-align: center; }
         
-        /* Gallery Styles */
-        .gallery-section { margin-top: 30px; border-top: 2px solid #eee; pt: 20px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
-        .gallery-item { background: white; padding: 10px; border-radius: 8px; border: 1px solid #ddd; position: relative; }
-        .gallery-item img { w-full; height: 100px; object-fit: cover; border-radius: 4px; cursor: pointer; }
-        .gallery-item .img-name { font-size: 10px; color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 5px; }
-        .gallery-item .delete-img { position: absolute; top: 5px; right: 5px; background: rgba(220, 53, 69, 0.8); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; cursor: pointer; display: flex; items-center; justify-center; }
-        .image-preview { margin-top: 10px; display: none; }
-        .image-preview img { max-height: 150px; border-radius: 8px; border: 2px solid #ddd; }
+        .product-item { background: #f8f9fa; padding: 15px; margin-bottom: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; transition: all 0.3s; }
+        .product-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #667eea; }
+        .product-content { display: flex; align-items: center; gap: 20px; }
+        .product-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #eee; }
+        .product-info h3 { color: #333; margin-bottom: 5px; font-size: 18px; }
+        .product-info p { color: #666; font-size: 14px; margin-bottom: 3px; }
+        .product-actions { display: flex; gap: 10px; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .form-section { background: #f8f9fa; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #eee; }
+        .success-msg { background: #28a745; color: white; padding: 12px; border-radius: 8px; margin-bottom: 20px; display: none; text-align: center; font-weight: bold; }
+        
+        .image-preview-container { margin-top: 15px; border: 2px dashed #ddd; padding: 15px; border-radius: 10px; background: #fff; display: none; text-align: center; }
+        #previewImg { max-height: 200px; max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
+        
+        /* Modal Style for Gallery if needed later, but simplified for now */
+        .gallery-toggle { background: #f0f0f0; color: #444; border: 1px solid #ccc; padding: 8px 15px; margin-top: 10px; font-size: 13px; }
+        .gallery-container { display: none; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 15px; max-height: 300px; overflow-y: auto; padding: 10px; background: #fff; border-radius: 8px; border: 1px solid #eee; }
+        .gallery-item { position: relative; cursor: pointer; border: 2px solid transparent; border-radius: 6px; overflow: hidden; transition: transform 0.2s; }
+        .gallery-item:hover { transform: scale(1.05); }
+        .gallery-item.selected { border-color: #667eea; box-shadow: 0 0 10px rgba(102,126,234,0.5); }
+        .gallery-item img { width: 100%; height: 80px; object-fit: cover; }
+        .btn-delete-img { position: absolute; top: 2px; right: 2px; background: rgba(220,53,69,0.8); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
-    <div id="loginContainer" class="login-container">
-        <h1>🔐 Admin Login</h1>
-        <div class="form-group">
-            <label>Parolă:</label>
-            <input type="password" id="password" placeholder="Introdu parola">
-        </div>
-        <button onclick="login()">Login</button>
+
+<div class="login-container" id="loginContainer">
+    <h1>🔐 Admin Login</h1>
+    <div class="form-group">
+        <label>Parolă:</label>
+        <input type="password" id="password" placeholder="Introdu parola">
+    </div>
+    <button onclick="login()" style="width:100%">Login</button>
+</div>
+
+<div class="admin-container hidden" id="adminContainer">
+    <div class="header">
+        <h1>📊 Administrare Produse</h1>
+        <button class="btn-secondary" onclick="logout()">Deconectare</button>
     </div>
 
-    <div id="adminContainer" class="admin-container hidden">
-        <div class="header">
-            <h1>📊 Administrare Produse</h1>
-            <button onclick="logout()" class="btn-secondary">Deconectare</button>
-        </div>
+    <div class="success-msg" id="successMsg"></div>
 
-        <div id="successMsg" class="success-msg"></div>
-
-        <div class="form-section">
-            <h2 id="formTitle">➕ Adaugă Produs Nou</h2>
-            <form id="productForm">
-                <input type="hidden" id="productId">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>Nume Produs:</label>
-                        <input type="text" id="productName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Categorie:</label>
-                        <select id="productCategory" required>
-                            <option value="BURGER">Burgeri</option>
-                            <option value="CARTOFI">Cartofi</option>
-                            <option value="KEBAB PUI">Kebab Pui</option>
-                            <option value="BĂUTURI">Băuturi</option>
-                            <option value="SOS">SOS</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>Emoji Categorie:</label>
-                        <input type="text" id="productCategoryEmoji" placeholder="🍔">
-                    </div>
-                    <div class="form-group">
-                        <label>Preț (RON):</label>
-                        <input type="text" id="productPrice" placeholder="38.00" required>
-                    </div>
-                </div>
-
+    <div class="form-section">
+        <h2 id="formTitle">➕ Adaugă Produs Nou</h2>
+        <form id="productForm">
+            <input type="hidden" id="productId">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div class="form-group">
-                    <label>Descriere:</label>
-                    <textarea id="productDescription" rows="3"></textarea>
+                    <label>Nume Produs:</label>
+                    <input type="text" id="productName" required>
                 </div>
-
                 <div class="form-group">
-                    <label>Imagine:</label>
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <input type="text" id="productImage" placeholder="nume-fisier.png" readonly>
-                        <button type="button" onclick="document.getElementById('productImageFile').click()" class="btn-secondary btn-sm">📷 Încarcă Nouă</button>
-                    </div>
+                    <label>Categorie:</label>
+                    <select id="productCategory" required>
+                        <option value="BURGER">Burgeri</option>
+                        <option value="CARTOFI">Cartofi</option>
+                        <option value="KEBAB PUI">Kebab Pui</option>
+                        <option value="BĂUTURI">Băuturi</option>
+                        <option value="SOS">SOS</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label>Emoji Categorie:</label>
+                    <input type="text" id="productCategoryEmoji" placeholder="🍔">
+                </div>
+                <div class="form-group">
+                    <label>Preț (RON):</label>
+                    <input type="text" id="productPrice" placeholder="38.00" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Descriere:</label>
+                <textarea id="productDescription" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Imagine:</label>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="productImage" placeholder="nume-fisier.png" readonly style="flex: 1;">
+                    <button type="button" class="btn-sm" onclick="document.getElementById('productImageFile').click()">📷 Încarcă Nouă</button>
                     <input type="file" id="productImageFile" accept="image/*" style="display:none">
-                    
-                    <div id="imagePreview" class="image-preview">
-                        <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Preview:</p>
-                        <img id="previewImg" src="">
-                    </div>
-
-                    <div class="gallery-section">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <label>Poze disponibile (Apasă pe o poză pentru a o selecta):</label>
-                            <button type="button" onclick="loadImages()" class="btn-secondary btn-sm" style="padding: 4px 10px;">🔄 Refresh</button>
-                        </div>
-                        <div id="imagesGallery" class="gallery-grid">
-                            <p style="font-size: 14px; color: #888;">Se încarcă galeria...</p>
-                        </div>
-                    </div>
+                </div>
+                
+                <button type="button" class="gallery-toggle" onclick="toggleGallery()">🖼️ Alege din pozele de pe server</button>
+                <div id="galleryContainer" class="gallery-container">
+                    <!-- Images loaded via JS -->
                 </div>
 
+                <div class="image-preview-container" id="imagePreview">
+                    <p style="font-weight:bold; margin-bottom:10px;">Preview Imagine:</p>
+                    <img id="previewImg" src="" alt="Preview">
+                    <p id="imageName" style="font-size:12px; color:#666;"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ingrediente:</label>
+                <input type="text" id="productIngredients" placeholder="Carne vită, Sos, Cheddar...">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div class="form-group">
-                    <label>Ingrediente:</label>
-                    <input type="text" id="productIngredients" placeholder="Carne vită, Sos, Cheddar...">
+                    <label>Alergeni:</label>
+                    <input type="text" id="productAllergens" placeholder="Gluten, Ouă, Lapte">
                 </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>Alergeni:</label>
-                        <input type="text" id="productAllergens" placeholder="Gluten, Ouă, Lapte">
-                    </div>
-                    <div class="form-group">
-                        <label>Valori Nutriționale:</label>
-                        <input type="text" id="productNutrition" placeholder="270 Kcal/100g">
-                    </div>
+                <div class="form-group">
+                    <label>Valori Nutriționale:</label>
+                    <input type="text" id="productNutrition" placeholder="270 Kcal/100g">
                 </div>
+            </div>
 
-                <button type="submit">💾 Salvează</button>
-                <button type="button" onclick="resetForm()" class="btn-secondary">Anulează</button>
-            </form>
-        </div>
-
-        <div class="list-section">
-            <h2>📦 Lista Produse</h2>
-            <div id="productsList"></div>
-        </div>
+            <button type="submit">💾 Salvează</button>
+            <button type="button" class="btn-secondary" onclick="resetForm()">Anulează</button>
+        </form>
     </div>
 
-    <script>
-        const PASSWORD = "Pasaj2012";
-        let products = [];
-        let images = [];
-        let editingId = null;
-        let pendingImageData = null;
+    <h2>📦 Lista Produse</h2>
+    <div id="productsList">
+        <!-- Products will be loaded here -->
+    </div>
+</div>
 
-        function login() {
-            if (document.getElementById('password').value === PASSWORD) {
-                document.getElementById('loginContainer').classList.add('hidden');
-                document.getElementById('adminContainer').classList.remove('hidden');
-                loadProducts();
-                loadImages();
-            } else {
-                alert('Parolă incorectă!');
-            }
+<script>
+    const PASSWORD = "Pasaj2012";
+    let products = [];
+    let editingId = null;
+    let pendingImageData = null;
+
+    function login() {
+        if (document.getElementById('password').value === PASSWORD) {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('adminContainer').classList.remove('hidden');
+            loadProducts();
+            loadGallery();
+        } else {
+            alert('Parolă incorectă!');
         }
+    }
 
-        function logout() {
-            document.getElementById('adminContainer').classList.add('hidden');
-            document.getElementById('loginContainer').classList.remove('hidden');
-            document.getElementById('password').value = '';
+    function logout() {
+        document.getElementById('adminContainer').classList.add('hidden');
+        document.getElementById('loginContainer').classList.remove('hidden');
+        document.getElementById('password').value = '';
+    }
+
+    async function loadProducts() {
+        try {
+            const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json';
+            const response = await fetch(GITHUB_RAW_URL + '?v=' + Date.now());
+            const data = await response.json();
+            products = Array.isArray(data) ? data : (data.products || []);
+            displayProducts();
+        } catch (error) {
+            console.error('Error loading products:', error);
         }
+    }
 
-        async function loadProducts() {
-            try {
-                const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json';
-                const response = await fetch(GITHUB_RAW_URL + '?v=' + Date.now());
-                const data = await response.json();
-                products = Array.isArray(data) ? data : (data.products || []);
-                displayProducts();
-            } catch (error) {
-                console.error('Error loading products:', error);
-            }
-        }
-
-        async function loadImages() {
-            try {
-                const resp = await fetch('/api/save-products');
-                const data = await resp.json();
-                images = data.images || [];
-                displayGallery();
-            } catch (err) {
-                console.error('Error loading images:', err);
-                document.getElementById('imagesGallery').innerHTML = '<p style="color:red">Eroare la încărcarea galeriei.</p>';
-            }
-        }
-
-        function displayGallery() {
-            const gallery = document.getElementById('imagesGallery');
-            gallery.innerHTML = '';
+    function displayProducts() {
+        const list = document.getElementById('productsList');
+        list.innerHTML = '';
+        products.forEach(p => {
+            const div = document.createElement('div');
+            div.className = 'product-item';
             
-            if (images.length === 0) {
-                gallery.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Nicio imagine găsită în folderul images.</p>';
-                return;
-            }
-
-            images.forEach(img => {
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                div.innerHTML = `
-                    <button type="button" class="delete-img" onclick="deleteImage('${img.name}')" title="Șterge imaginea de pe GitHub">×</button>
-                    <img src="${img.url}" onclick="selectImage('${img.name}')" title="Apasă pentru a selecta">
-                    <div class="img-name">${img.name}</div>
-                `;
-                gallery.appendChild(div);
-            });
-        }
-
-        function selectImage(name) {
-            document.getElementById('productImage').value = name;
-            document.getElementById('previewImg').src = 'images/' + name;
-            document.getElementById('imagePreview').style.display = 'block';
-            pendingImageData = null;
-        }
-
-        async function deleteImage(name) {
-            if (!confirm(`Sigur vrei să ștergi imaginea "${name}"? Aceasta va fi ștearsă definitiv de pe GitHub.`)) return;
+            // Thumbnail path
+            const thumbPath = p.image ? `images/${p.image}` : 'images/placeholder.png';
             
-            try {
-                showSuccess('Deleting image...');
-                const resp = await fetch('/api/save-products', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete-image', filename: name })
-                });
-                if (resp.ok) {
-                    showSuccess('Imagine ștearsă cu succes.');
-                    loadImages();
-                } else {
-                    const err = await resp.json();
-                    alert('Eroare la ștergere: ' + (err.details || err.error));
-                }
-            } catch (err) {
-                alert('Error: ' + err.message);
-            }
-        }
-
-        function displayProducts() {
-            const list = document.getElementById('productsList');
-            list.innerHTML = '';
-            products.forEach(p => {
-                const div = document.createElement('div');
-                div.className = 'product-item';
-                div.innerHTML = `
+            div.innerHTML = `
+                <div class="product-content">
+                    <img src="${thumbPath}" class="product-thumb" alt="${p.name}" onerror="this.src='https://placehold.co/80?text=Fără+Poză'">
                     <div class="product-info">
                         <h3>${p.name} - ${p.price} RON</h3>
                         <p>${p.category} | ${p.description || 'Fără descriere'}</p>
-                        <p style="font-size: 12px; color: #999;">Imagine: ${p.image || 'N/A'}</p>
+                        <p style="font-size: 11px; color: #999;">Fișier: ${p.image || 'N/A'}</p>
                     </div>
-                    <div class="product-actions">
-                        <button onclick="editProduct(${p.id})">✏️ Editează</button>
-                        <button class="btn-danger" onclick="deleteProduct(${p.id})">🗑️ Șterge</button>
-                    </div>
-                `;
-                list.appendChild(div);
+                </div>
+                <div class="product-actions">
+                    <button class="btn-sm" onclick="editProduct(${p.id})">✏️ Editează</button>
+                    <button class="btn-sm btn-danger" onclick="deleteProduct(${p.id})">🗑️ Șterge</button>
+                </div>
+            `;
+            list.appendChild(div);
+        });
+    }
+
+    async function loadGallery() {
+        try {
+            const resp = await fetch('/api/save-products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'list-images' })
             });
+            const data = await resp.json();
+            if (data.images) {
+                const gallery = document.getElementById('galleryContainer');
+                gallery.innerHTML = '';
+                data.images.forEach(img => {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    div.onclick = () => selectFromGallery(img);
+                    div.innerHTML = `
+                        <img src="images/${img}" alt="${img}">
+                        <button class="btn-delete-img" onclick="event.stopPropagation(); deleteImage('${img}')">×</button>
+                    `;
+                    gallery.appendChild(div);
+                });
+            }
+        } catch (err) {
+            console.error('Error loading gallery:', err);
+        }
+    }
+
+    function toggleGallery() {
+        const g = document.getElementById('galleryContainer');
+        g.style.display = g.style.display === 'grid' ? 'none' : 'grid';
+    }
+
+    function selectFromGallery(filename) {
+        document.getElementById('productImage').value = filename;
+        document.getElementById('previewImg').src = `images/${filename}`;
+        document.getElementById('imagePreview').style.display = 'block';
+        document.getElementById('imageName').textContent = filename;
+        pendingImageData = null;
+        
+        // Mark as selected in UI
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.classList.toggle('selected', item.querySelector('img').alt === filename);
+        });
+    }
+
+    async function deleteImage(filename) {
+        if (!confirm('Ștergi definitiv această imagine de pe server?')) return;
+        try {
+            const resp = await fetch('/api/save-products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'delete-image', filename })
+            });
+            if (resp.ok) {
+                loadGallery();
+                if (document.getElementById('productImage').value === filename) {
+                    resetImage();
+                }
+            }
+        } catch (err) {
+            alert('Error deleting image: ' + err.message);
+        }
+    }
+
+    document.getElementById('productImageFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('previewImg').src = event.target.result;
+                document.getElementById('imageName').textContent = file.name;
+                document.getElementById('imagePreview').style.display = 'block';
+                document.getElementById('productImage').value = file.name;
+                pendingImageData = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('productForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const product = {
+            id: editingId || (products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1),
+            name: document.getElementById('productName').value,
+            category: document.getElementById('productCategory').value,
+            categoryEmoji: document.getElementById('productCategoryEmoji').value,
+            description: document.getElementById('productDescription').value,
+            price: document.getElementById('productPrice').value,
+            image: document.getElementById('productImage').value,
+            ingredients: document.getElementById('productIngredients').value,
+            allergens: document.getElementById('productAllergens').value,
+            nutrition: document.getElementById('productNutrition').value
+        };
+
+        if (editingId) {
+            const idx = products.findIndex(p => p.id === editingId);
+            products[idx] = product;
+        } else {
+            products.push(product);
         }
 
-        document.getElementById('productImageFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    document.getElementById('previewImg').src = event.target.result;
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('productImage').value = file.name;
-                    pendingImageData = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+        await saveToGitHub(products, pendingImageData, product.image);
+    });
 
-        document.getElementById('productForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const product = {
-                id: editingId || (products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1),
-                name: document.getElementById('productName').value,
-                category: document.getElementById('productCategory').value,
-                categoryEmoji: document.getElementById('productCategoryEmoji').value,
-                description: document.getElementById('productDescription').value,
-                price: document.getElementById('productPrice').value,
-                image: document.getElementById('productImage').value,
-                ingredients: document.getElementById('productIngredients').value,
-                allergens: document.getElementById('productAllergens').value,
-                nutrition: document.getElementById('productNutrition').value
-            };
-
-            if (editingId) {
-                const idx = products.findIndex(p => p.id === editingId);
-                products[idx] = product;
-            } else {
-                products.push(product);
-            }
-
-            await saveToGitHub(products, pendingImageData, product.image);
-        });
-
-        async function saveToGitHub(updatedProducts, imageData, filename) {
-            try {
-                if (imageData && filename) {
-                    showSuccess('Uploading image...');
-                    const imgResp = await fetch('/api/save-products', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'upload-image', filename, imageData })
-                    });
-                    if (!imgResp.ok) throw new Error('Failed to upload image');
-                }
-
-                showSuccess('Saving products...');
-                const resp = await fetch('/api/save-products', {
+    async function saveToGitHub(updatedProducts, imageData, filename) {
+        try {
+            if (imageData && filename) {
+                showSuccess('Se încarcă imaginea...');
+                const imgResp = await fetch('/api/save-products', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ products: updatedProducts })
+                    body: JSON.stringify({ action: 'upload-image', filename, imageData })
                 });
-                
-                const result = await resp.json();
-                if (resp.ok && result.success) {
-                    showSuccess('✅ Succes! Modificările au fost trimise pe GitHub.');
-                    resetForm();
-                    setTimeout(() => {
-                        loadProducts();
-                        loadImages();
-                    }, 2000);
-                } else {
-                    throw new Error(result.error || 'Failed to save');
-                }
-            } catch (err) {
-                alert('Error: ' + err.message);
+                if (!imgResp.ok) throw new Error('Eroare la încărcarea imaginii');
             }
-        }
 
-        function editProduct(id) {
-            const p = products.find(prod => prod.id === id);
-            if (p) {
-                editingId = id;
-                document.getElementById('formTitle').textContent = '✏️ Editează Produs';
-                document.getElementById('productName').value = p.name;
-                document.getElementById('productCategory').value = p.category;
-                document.getElementById('productCategoryEmoji').value = p.categoryEmoji || '';
-                document.getElementById('productDescription').value = p.description || '';
-                document.getElementById('productPrice').value = p.price;
-                document.getElementById('productImage').value = p.image || '';
-                document.getElementById('productIngredients').value = p.ingredients || '';
-                document.getElementById('productAllergens').value = p.allergens || '';
-                document.getElementById('productNutrition').value = p.nutrition || '';
-                
-                if (p.image) {
-                    document.getElementById('previewImg').src = 'images/' + p.image;
-                    document.getElementById('imagePreview').style.display = 'block';
-                } else {
-                    document.getElementById('imagePreview').style.display = 'none';
-                }
-                
-                pendingImageData = null;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            showSuccess('Se salvează lista de produse...');
+            const resp = await fetch('/api/save-products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ products: updatedProducts })
+            });
+            
+            const result = await resp.json();
+            if (resp.ok && result.success) {
+                showSuccess('✅ Succes! Datele au fost actualizate.');
+                resetForm();
+                setTimeout(() => {
+                    loadProducts();
+                    loadGallery();
+                }, 2000);
+            } else {
+                throw new Error(result.error || 'Eroare la salvare');
             }
+        } catch (err) {
+            alert('Eroare: ' + err.message);
         }
+    }
 
-        async function deleteProduct(id) {
-            if (confirm('Ștergi acest produs?')) {
-                products = products.filter(p => p.id !== id);
-                await saveToGitHub(products);
+    function editProduct(id) {
+        const p = products.find(prod => prod.id === id);
+        if (p) {
+            editingId = id;
+            document.getElementById('formTitle').textContent = '✏️ Editează Produs';
+            document.getElementById('productName').value = p.name;
+            document.getElementById('productCategory').value = p.category;
+            document.getElementById('productCategoryEmoji').value = p.categoryEmoji || '';
+            document.getElementById('productDescription').value = p.description || '';
+            document.getElementById('productPrice').value = p.price;
+            document.getElementById('productImage').value = p.image || '';
+            document.getElementById('productIngredients').value = p.ingredients || '';
+            document.getElementById('productAllergens').value = p.allergens || '';
+            document.getElementById('productNutrition').value = p.nutrition || '';
+            
+            if (p.image) {
+                document.getElementById('previewImg').src = `images/${p.image}`;
+                document.getElementById('imagePreview').style.display = 'block';
+                document.getElementById('imageName').textContent = p.image;
+            } else {
+                document.getElementById('imagePreview').style.display = 'none';
             }
-        }
-
-        function resetForm() {
-            document.getElementById('productForm').reset();
-            editingId = null;
+            
             pendingImageData = null;
-            document.getElementById('imagePreview').style.display = 'none';
-            document.getElementById('formTitle').textContent = '➕ Adaugă Produs Nou';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    }
 
-        function showSuccess(msg) {
-            const el = document.getElementById('successMsg');
-            el.textContent = msg;
-            el.style.display = 'block';
-            setTimeout(() => el.style.display = 'none', 5000);
+    async function deleteProduct(id) {
+        if (confirm('Ești sigur că vrei să ștergi acest produs?')) {
+            products = products.filter(p => p.id !== id);
+            await saveToGitHub(products);
         }
-    </script>
+    }
+
+    function resetForm() {
+        document.getElementById('productForm').reset();
+        editingId = null;
+        pendingImageData = null;
+        document.getElementById('imagePreview').style.display = 'none';
+        document.getElementById('formTitle').textContent = '➕ Adaugă Produs Nou';
+    }
+
+    function resetImage() {
+        document.getElementById('productImage').value = '';
+        document.getElementById('imagePreview').style.display = 'none';
+        pendingImageData = null;
+    }
+
+    function showSuccess(msg) {
+        const el = document.getElementById('successMsg');
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(() => el.style.display = 'none', 5000);
+    }
+</script>
+
 </body>
 </html>
