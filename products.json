@@ -126,10 +126,10 @@
         "categoryEmoji": "🍟",
         "description": "Cartofi cu usturoi proaspăt",
         "price": "15.00",
-        "image": "CARTOFI PRĂJIȚI CU USTUROI ȘI PĂTRUNJEL VERDE.png",
+        "image": "Cartofi prăjiți cu usturoi și pătrunjel verde.png",
         "ingredients": "Cartofi, Usturoi, Pătrunjel",
-        "allergens": "-",
-        "nutrition": "320 Kcal/100g"
+        "nutrition": "320 Kcal/100g",
+        "allergens": "-"
     },
     {
         "id": 13,
@@ -162,10 +162,10 @@
         "categoryEmoji": "🍺",
         "description": "Bere URSUS",
         "price": "10.00",
-        "image": "",
+        "image": "URSUS 0.33L.png",
         "ingredients": "Bere",
-        "nutrition": "43 Kcal/100ml",
-        "allergens": "Gluten"
+        "allergens": "Gluten",
+        "nutrition": "43 Kcal/100ml"
     },
     {
         "id": 16,
