@@ -198,10 +198,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos de usturoi proaspăt",
         "price": "6.00",
-        "image": "SOS DE USTUROI.png",
+        "image": "",
         "ingredients": "Usturoi, Maioneză",
-        "allergens": "Ouă",
-        "nutrition": "150 Kcal/100g"
+        "nutrition": "150 Kcal/100g",
+        "allergens": "Ouă"
     },
     {
         "id": 19,
@@ -210,10 +210,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos special pentru burger",
         "price": "7.00",
-        "image": "",
+        "image": "EXTRA SOS BURGER.png",
         "ingredients": "Maioneză, Ketchup, Condimente",
-        "nutrition": "160 Kcal/100g",
-        "allergens": "Ouă"
+        "allergens": "Ouă",
+        "nutrition": "160 Kcal/100g"
     },
     {
         "id": 20,
