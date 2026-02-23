@@ -210,10 +210,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos special pentru burger",
         "price": "7.00",
-        "image": "EXTRA SOS BURGER.png",
+        "image": "",
         "ingredients": "Maioneză, Ketchup, Condimente",
-        "allergens": "Ouă",
-        "nutrition": "160 Kcal/100g"
+        "nutrition": "160 Kcal/100g",
+        "allergens": "Ouă"
     },
     {
         "id": 20,
@@ -222,10 +222,10 @@
         "categoryEmoji": "🧉",
         "description": "Sos BBQ picant",
         "price": "7.00",
-        "image": "",
+        "image": "EXTRA SOS BBQ CHIPOTLE.png",
         "ingredients": "BBQ, Chipotle",
-        "nutrition": "140 Kcal/100g",
-        "allergens": "-"
+        "allergens": "-",
+        "nutrition": "140 Kcal/100g"
     },
     {
         "id": 21,
