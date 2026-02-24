@@ -29,7 +29,7 @@
         "category": "BURGER",
         "categoryEmoji": "🍔",
         "description": "Burger picant cu jalapeño și sos spicy",
-        "price": "38.00",
+        "price": "26.99",
         "image": "Iute-n gura.png",
         "ingredients": "Carne vită, Jalapeño, Sos picant, Cheddar",
         "allergens": "Gluten, Ouă, Lapte",
@@ -259,6 +259,18 @@
         "description": "",
         "price": "42.00",
         "image": "Classic smashed.png",
+        "ingredients": "",
+        "allergens": "",
+        "nutrition": ""
+    },
+    {
+        "id": 25,
+        "name": "(async () => {   const mapping = {     \"CLASSIC SMASHED\": \"26.99\",     \"CLASSIC DOUBLE SMASHED\": \"35.99\",     \"BBQ BACON\": \"29.99\",     \"BBQ BACON DOUBLE SMASHED\": \"40.99\",     \"IUTE-N GURA\": \"26.99\",     \"DOUBLE IUTE-N GURA\": \"35.99\",     \"CHAMPIGNON BLUES\": \"28.99\",     \"DOUBLE CHAMPIGNON BLUES\": \"38.99\"   };    try {     const resp = await fetch('https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json?v=' + Date.now());     let products = await resp.json();     if (!Array.isArray(products)) products = products.products;      let updateCount = 0;     products.forEach(p => {       const key = p.name.trim().toUpperCase();       if (mapping[key]) {         p.price = mapping[key];         updateCount++;       }     });      if (updateCount === 0) {       alert('No products matched for update.');       return;     }      const saveResp = await fetch('/api/save-products', {       method: 'POST',       headers: { 'Content-Type': 'application/json' },       body: JSON.stringify({ products })     });      if (saveResp.ok) {       alert(`Success! Updated ${updateCount} products.`);       location.reload();     } else {       const err = await saveResp.json();       alert('Error saving: ' + JSON.stringify(err));     }   } catch (e) {     alert('Exception: ' + e.message);   } })();",
+        "category": "BURGER",
+        "categoryEmoji": "🍔",
+        "description": "",
+        "price": "(async () => {   const mapping = {     \"CLASSIC SMASHED\": \"26.99\",     \"CLASSIC DOUBLE SMASHED\": \"35.99\",     \"BBQ BACON\": \"29.99\",     \"BBQ BACON DOUBLE SMASHED\": \"40.99\",     \"IUTE-N GURA\": \"26.99\",     \"DOUBLE IUTE-N GURA\": \"35.99\",     \"CHAMPIGNON BLUES\": \"28.99\",     \"DOUBLE CHAMPIGNON BLUES\": \"38.99\"   };    const resp = await fetch('https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/products.json?v=' + Date.now());   let products = await resp.json();   if (!Array.isArray(products)) products = products.products;    console.log('Original prices:', products.map(p => `${p.name}: ${p.price}`));    products.forEach(p => {     const key = p.name.trim().toUpperCase();     if (mapping[key]) {       p.price = mapping[key];     }   });    console.log('New prices:', products.map(p => `${p.name}: ${p.price}`));    const saveResp = await fetch('/api/save-products', {     method: 'POST',     headers: { 'Content-Type': 'application/json' },     body: JSON.stringify({ products })   });    if (saveResp.ok) {     console.log('✅ POST successful');     alert('Prețuri trimise. Verifică în 10 secunde.');   } else {     console.error('❌ POST failed');   } })();",
+        "image": "",
         "ingredients": "",
         "allergens": "",
         "nutrition": ""
