@@ -17,11 +17,11 @@
         "category": "BURGER",
         "categoryEmoji": "🍔",
         "description": "Dublu burger smash pentru apetit mare",
-        "price": "48.00",
+        "price": "35.99",
         "image": "Classic double smashed.png",
         "ingredients": "2x Carne vită 90g, 2x Cheddar, Sos, Salată, Chiflă",
-        "nutrition": "280 Kcal/100g",
-        "allergens": "Gluten, Ouă, Lapte"
+        "allergens": "Gluten, Ouă, Lapte",
+        "nutrition": "280 Kcal/100g"
     },
     {
         "id": 3,
@@ -77,7 +77,7 @@
         "category": "BURGER",
         "categoryEmoji": "🍄",
         "description": "Dublu burger cu ciuperci și sos blue cheese",
-        "price": "38.99",
+        "price": "51.00",
         "image": "DOUBLE CHAMPIGNON BLUES.png",
         "ingredients": "2x Carne vită, Ciuperci, Blue Cheese, Chiflă",
         "allergens": "Gluten, Lapte",
