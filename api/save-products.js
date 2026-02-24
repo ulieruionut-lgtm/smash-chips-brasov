@@ -61,32 +61,30 @@ export default async function handler(req, res) {
     if (body.action === 'delete-image') {
       const { filename } = body;
       if (!filename) return res.status(400).json({ error: 'Missing filename' });
-
+      
       const FILE_PATH = `images/${filename}`;
+      const ENCODED_PATH = FILE_PATH.split('/').map(segment => encodeURIComponent(segment)).join('/');
+      const GITHUB_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${ENCODED_PATH}`;
 
       // Get file SHA for deletion
-      const checkFile = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
-        { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } }
-      );
-      if (!checkFile.ok) return res.status(404).json({ error: 'File not found' });
+      const checkFile = await fetch(GITHUB_URL, {
+        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+      });
+      if (!checkFile.ok) return res.status(404).json({ error: 'File not found on GitHub' });
+      
       const fileData = await checkFile.json();
-
-      const delResp = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `Delete image ${filename} via admin panel`,
-            sha: fileData.sha,
-            branch: 'main'
-          })
-        }
-      );
+      const delResp = await fetch(GITHUB_URL, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `token ${GITHUB_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Delete image ${filename} via admin panel`,
+          sha: fileData.sha,
+          branch: 'main'
+        })
+      });
 
       if (!delResp.ok) {
         const err = await delResp.json();
@@ -104,34 +102,32 @@ export default async function handler(req, res) {
 
       const base64Image = imageData.includes(',') ? imageData.split(',')[1] : imageData;
       const FILE_PATH = `images/${filename}`;
-      let imageSha = null;
+      const ENCODED_PATH = FILE_PATH.split('/').map(segment => encodeURIComponent(segment)).join('/');
+      const GITHUB_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${ENCODED_PATH}`;
 
+      let imageSha = null;
       // Check if file already exists to get SHA (for update)
-      const checkFile = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
-        { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } }
-      );
+      const checkFile = await fetch(GITHUB_URL, {
+        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+      });
       if (checkFile.ok) {
         const fileData = await checkFile.json();
         imageSha = fileData.sha;
       }
 
-      const uploadResp = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `Upload image ${filename} via admin panel`,
-            content: base64Image,
-            ...(imageSha && { sha: imageSha }),
-            branch: 'main'
-          })
-        }
-      );
+      const uploadResp = await fetch(GITHUB_URL, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${GITHUB_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Upload image ${filename} via admin panel`,
+          content: base64Image,
+          ...(imageSha && { sha: imageSha }),
+          branch: 'main'
+        })
+      });
 
       if (!uploadResp.ok) {
         const err = await uploadResp.json();
@@ -153,7 +149,7 @@ export default async function handler(req, res) {
     );
 
     if (!getFileResponse.ok) {
-      return res.status(500).json({ error: 'Failed to get products.json' });
+      return res.status(500).json({ error: 'Failed to get products.json from GitHub' });
     }
 
     const fileData = await getFileResponse.json();
