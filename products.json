@@ -1,15 +1,15 @@
 [
     {
         "id": 1,
-        "name": "CLASSIC SMASHED",
+        "name": "CLASSIC SMASHED - TEST FIX",
         "category": "BURGER",
         "categoryEmoji": "🍔",
         "description": "Burger clasic smash cu carne proaspătă",
         "price": "38.00",
         "image": "Classic smashed.png",
         "ingredients": "Carne vită 90g, Sos, Cheddar, Salată, Castraveți, Chiflă",
-        "nutrition": "270 Kcal/100g",
-        "allergens": "Gluten, Ouă, Lapte"
+        "allergens": "Gluten, Ouă, Lapte",
+        "nutrition": "270 Kcal/100g"
     },
     {
         "id": 2,
