@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMASH & CHIPS Brașov - Burgeri Premium - Meniu Complet</title>
     <meta name="description" content="Cei mai buni burgeri smash din Brașov! Meniu complet: Burgeri, Cartofi, Kebab, Băuturi și Sosuri. Comandă online pe Bolt Food!">
+        <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+        <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .gradient-bg { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
@@ -123,7 +125,7 @@
                              onerror="this.parentElement.innerHTML='<div class=\\'placeholder-img h-48 flex items-center justify-center text-6xl\\'>${product.categoryEmoji || '🍔'}</div>'; this.parentElement.classList.remove('h-48','overflow-hidden','relative');">
                     </div>`;
                 } else {
-                    displayImg = `<div class="placeholder-img h-48 flex items-center justify-center text-6xl">${product.categoryEmoji || '🍔'}</div>`;
+                    displayImg = `<div class="placeholder-img h-48 flex items-center justify-center text-6xl">${product.categoryE loading="lazy"moji || '🍔'}</div>`;
                 }
 
                 card.innerHTML = `
