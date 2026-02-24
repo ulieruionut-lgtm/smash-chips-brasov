@@ -240,7 +240,7 @@
                     div.className = 'gallery-item';
                     div.onclick = () => selectFromGallery(imgName);
                     div.innerHTML = `
-                        <img src="images/${imgName}" alt="${imgName}">
+                        <img src="images/${encodeURIComponent(imgName)}" alt="${imgName}">
                         <div style="font-size: 10px; text-align: center; padding: 2px;">${imgName}</div>
                         <button class="btn-delete-img" onclick="event.stopPropagation(); deleteImage('${imgName}')">×</button>
                     `;
