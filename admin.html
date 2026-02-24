@@ -203,7 +203,7 @@
         sortedProducts.forEach(p => {
             const div = document.createElement('div');
             div.className = 'product-item';
-            const thumbPath = p.image ? `images/${p.image}` : 'images/placeholder.png';
+            const thumbPath = p.image ? `https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/images/${encodeURIComponent(p.image)}` : 'images/placeholder.png';
             
             div.innerHTML = `
                 <div class="product-content">
@@ -240,7 +240,7 @@
                     div.className = 'gallery-item';
                     div.onclick = () => selectFromGallery(imgName);
                     div.innerHTML = `
-                        <img src="images/${encodeURIComponent(imgName)}" alt="${imgName}">
+                        <img src="https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/images/${encodeURIComponent(imgName)}" alt="${imgName}">
                         <div style="font-size: 10px; text-align: center; padding: 2px;">${imgName}</div>
                         <button class="btn-delete-img" onclick="event.stopPropagation(); deleteImage('${imgName}')">×</button>
                     `;
@@ -261,7 +261,7 @@
 
     function selectFromGallery(filename) {
         document.getElementById('productImage').value = filename;
-        document.getElementById('previewImg').src = `images/${filename}`;
+        document.getElementById('previewImg').src = `https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/images/${encodeURIComponent(filename)}`;
         document.getElementById('imagePreview').style.display = 'block';
         document.getElementById('imageName').textContent = filename;
         pendingImageData = null;
@@ -440,7 +440,7 @@
             document.getElementById('productNutrition').value = p.nutrition || '';
             
             if (p.image) {
-                document.getElementById('previewImg').src = `images/${p.image}`;
+                document.getElementById('previewImg').src = `https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/images/${encodeURIComponent(p.image)}`;
                 document.getElementById('imagePreview').style.display = 'block';
                 document.getElementById('imageName').textContent = p.image;
             } else {
