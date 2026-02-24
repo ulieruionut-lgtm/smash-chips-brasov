@@ -96,18 +96,6 @@
         "allergens": "Gluten, Lapte"
     },
     {
-        "id": 9,
-        "name": "DOVLEAC SMASHED",
-        "category": "BURGER",
-        "categoryEmoji": "🎃",
-        "description": "Ediție limitată: Burger cu dovleac copt și condimente",
-        "price": "42.00",
-        "image": "",
-        "ingredients": "Carne vită, Dovleac copt, Sos special, Cheddar",
-        "allergens": "Gluten, Lapte",
-        "nutrition": "260 Kcal/100g"
-    },
-    {
         "id": 10,
         "name": "CARTOFI CU USTUROI, PĂTRUNJEL, PARMEZAN ȘI BACON",
         "category": "CARTOFI",
