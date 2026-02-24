@@ -138,10 +138,10 @@
         "categoryEmoji": "🥙",
         "description": "Kebab cu pui proaspăt",
         "price": "29.99",
-        "image": "",
+        "image": "KEBAB PUI.png",
         "ingredients": "Pui, Legume, Sos",
-        "nutrition": "250 Kcal/100g",
-        "allergens": "Gluten"
+        "allergens": "Gluten",
+        "nutrition": "250 Kcal/100g"
     },
     {
         "id": 14,
@@ -250,5 +250,17 @@
         "ingredients": "Blue Cheese, Smântână",
         "nutrition": "170 Kcal/100g",
         "allergens": "Lapte"
+    },
+    {
+        "id": 24,
+        "name": "Dovleac Premium 2026",
+        "category": "BURGER",
+        "categoryEmoji": "🍔",
+        "description": "",
+        "price": "42.00",
+        "image": "Classic smashed.png",
+        "ingredients": "",
+        "allergens": "",
+        "nutrition": ""
     }
 ]
