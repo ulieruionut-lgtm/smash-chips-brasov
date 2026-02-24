@@ -252,18 +252,6 @@
         "allergens": "Lapte"
     },
     {
-        "id": 23,
-        "name": "Dovleac Test Fix",
-        "category": "BURGER",
-        "categoryEmoji": "🍔",
-        "description": "Acesta este un produs de test pentru a verifica fix-ul la API-ul de salvare.",
-        "price": "45.00",
-        "image": "",
-        "ingredients": "",
-        "allergens": "",
-        "nutrition": ""
-    },
-    {
         "id": 24,
         "name": "Dovleac Premium 2026",
         "category": "BURGER",
