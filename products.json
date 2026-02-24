@@ -140,8 +140,8 @@
         "price": "29.99",
         "image": "",
         "ingredients": "Pui, Legume, Sos",
-        "allergens": "Gluten",
-        "nutrition": "250 Kcal/100g"
+        "nutrition": "250 Kcal/100g",
+        "allergens": "Gluten"
     },
     {
         "id": 14,
@@ -150,10 +150,10 @@
         "categoryEmoji": "🥙",
         "description": "Kebab cu porție de cartofi",
         "price": "36.99",
-        "image": "",
+        "image": "COMBO KEBAB PUI + CARTOFI 100gr.png",
         "ingredients": "Pui, Legume, Sos, Cartofi 100g",
-        "nutrition": "280 Kcal/100g",
-        "allergens": "Gluten"
+        "allergens": "Gluten",
+        "nutrition": "280 Kcal/100g"
     },
     {
         "id": 15,
