@@ -5,11 +5,11 @@
         "category": "BURGER",
         "categoryEmoji": "🍔",
         "description": "Burger clasic smash cu carne proaspătă",
-        "price": "26.99",
+        "price": "38.00",
         "image": "Classic smashed.png",
         "ingredients": "Carne vită 90g, Sos, Cheddar, Salată, Castraveți, Chiflă",
-        "allergens": "Gluten, Ouă, Lapte",
-        "nutrition": "270 Kcal/100g"
+        "nutrition": "270 Kcal/100g",
+        "allergens": "Gluten, Ouă, Lapte"
     },
     {
         "id": 2,
@@ -250,5 +250,17 @@
         "ingredients": "Blue Cheese, Smântână",
         "nutrition": "170 Kcal/100g",
         "allergens": "Lapte"
+    },
+    {
+        "id": 23,
+        "name": "Dovleac Test Fix",
+        "category": "BURGER",
+        "categoryEmoji": "🍔",
+        "description": "Acesta este un produs de test pentru a verifica fix-ul la API-ul de salvare.",
+        "price": "45.00",
+        "image": "",
+        "ingredients": "",
+        "allergens": "",
+        "nutrition": ""
     }
 ]
