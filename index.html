@@ -118,7 +118,7 @@
                     // ENCODE URL components for special characters like spaces
                     const encodedImg = encodeURIComponent(product.image);
                     displayImg = `<div class="h-48 overflow-hidden relative bg-gray-100">
-                        <img src="images/${encodedImg}" alt="${product.name}" 
+                        <img src="https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/images/${encodedImg}" alt="${product.name}" 
                              class="w-full h-full object-cover"
                              onerror="this.parentElement.innerHTML='<div class=\\'placeholder-img h-48 flex items-center justify-center text-6xl\\'>${product.categoryEmoji || '🍔'}</div>'; this.parentElement.classList.remove('h-48','overflow-hidden','relative');">
                     </div>`;
@@ -148,7 +148,7 @@
             let imgHtml = '';
             if (p.img) {
                 const encoded = encodeURIComponent(p.img);
-                imgHtml = `<img src="images/${encoded}" alt="${name}" class="w-full h-64 object-cover rounded-xl mb-4 shadow-md"
+                imgHtml = `<img src="https://raw.githubusercontent.com/ulieruionut-lgtm/smash-chips-brasov/main/images/${encoded}" alt="${name}" class="w-full h-64 object-cover rounded-xl mb-4 shadow-md"
                              onerror="this.style.display='none'">`;
             }
 
