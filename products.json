@@ -250,17 +250,5 @@
         "ingredients": "Blue Cheese, Smântână",
         "nutrition": "170 Kcal/100g",
         "allergens": "Lapte"
-    },
-    {
-        "id": 24,
-        "name": "Dovleac Premium 2026",
-        "category": "BURGER",
-        "categoryEmoji": "🍔",
-        "description": "",
-        "price": "42.00",
-        "image": "Classic smashed.png",
-        "ingredients": "",
-        "allergens": "",
-        "nutrition": ""
     }
 ]
