@@ -176,8 +176,8 @@
         "price": "7.00",
         "image": "APA DORNA MIN 0.5L.png",
         "ingredients": "Apă minerală",
-        "allergens": "-",
-        "nutrition": "0 Kcal"
+        "nutrition": "0 Kcal",
+        "allergens": "-"
     },
     {
         "id": 17,
@@ -188,8 +188,8 @@
         "price": "7.00",
         "image": "APA DORNA PLATA 0.5L.png",
         "ingredients": "Apă plată",
-        "nutrition": "0 Kcal",
-        "allergens": "-"
+        "allergens": "-",
+        "nutrition": "0 Kcal"
     },
     {
         "id": 18,
